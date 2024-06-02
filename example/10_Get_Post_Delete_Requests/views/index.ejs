@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogs</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>All Blogs</h1>
+  <a href="/blogs/create">Create a new blog</a>
+  <div class="blogs">
+    <% blogs.forEach(blog => { %>
+      <div class="blog">
+        <h3><a href="/blogs/<%= blog.id %>"><%= blog.title %></a></h3>
+        <p><%= blog.snippet %></p>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

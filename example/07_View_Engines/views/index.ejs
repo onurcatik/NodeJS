@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+<div class="content">
+    <h1>Welcome to My App</h1>
+    <p>This is a Node.js application using EJS.</p>
+    <div class="blogs">
+        <h2>All Blogs</h2>
+        <% if (blogs.length > 0) { %>
+            <% blogs.forEach(blog => { %>
+                <div class="blog">
+                    <h3><%= blog.title %></h3>
+                    <p><%= blog.snippet %></p>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>There are no blogs to display.</p>
+        <% } %>
+    </div>
+</div>
+<%- include('partials/footer') %>
