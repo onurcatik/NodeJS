@@ -1,0 +1,502 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>View Engines - Node.js</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../01_Introduction_Setup/index.html"><strong aria-hidden="true">1.</strong> Introduction & Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../01_Introduction_Setup/example.html"><strong aria-hidden="true">1.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../02_Basics/index.html"><strong aria-hidden="true">2.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../02_Basics/example.html"><strong aria-hidden="true">2.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../03_Clients_Servers/index.html"><strong aria-hidden="true">3.</strong> Clients Servers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../03_Clients_Servers/example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../04_Requests_Responses/index.html"><strong aria-hidden="true">4.</strong> Request & Responses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../04_Requests_Responses/example.html"><strong aria-hidden="true">4.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../05_NPM/index.html"><strong aria-hidden="true">5.</strong> NPM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../05_NPM/example.html"><strong aria-hidden="true">5.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../06_Express_Apps/index.html"><strong aria-hidden="true">6.</strong> Express Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../06_Express_Apps/example.html"><strong aria-hidden="true">6.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../07_View_Engines/index.html" class="active"><strong aria-hidden="true">7.</strong> View Engines</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../07_View_Engines/example.html"><strong aria-hidden="true">7.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../08_Middleware/index.html"><strong aria-hidden="true">8.</strong> Middleware</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../08_Middleware/example.html"><strong aria-hidden="true">8.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../09_MongoDB/index.html"><strong aria-hidden="true">9.</strong> MongoDB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../09_MongoDB/example.html"><strong aria-hidden="true">9.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../10_Get_Post_Delete_Requests/index.html"><strong aria-hidden="true">10.</strong> Get, Post, Delete Requests</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../10_Get_Post_Delete_Requests/example.html"><strong aria-hidden="true">10.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../11_Express_Router_MVC/index.html"><strong aria-hidden="true">11.</strong> Express Router MVC</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../11_Express_Router_MVC/example.html"><strong aria-hidden="true">11.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../12_Wrap_Up/index.html"><strong aria-hidden="true">12.</strong> Wrap Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../12_Wrap_Up/example.html"><strong aria-hidden="true">12.1.</strong> Example</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Node.js</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="nodejs---view-engines"><a class="header" href="#nodejs---view-engines">Node.js - View Engines</a></h1>
+<p>In this tutorial, we will explore how to use a view engine with a Node.js and Express application to dynamically generate HTML pages. By leveraging view engines, we can inject dynamic data into our HTML templates, making our web applications more interactive and responsive to user data and database content. We will specifically focus on the EJS (Embedded JavaScript) view engine due to its simplicity and powerful features.</p>
+<h2 id="step-1-install-ejs"><a class="header" href="#step-1-install-ejs">Step 1: Install EJS</a></h2>
+<p>First, we need to install the EJS package. Open your terminal and navigate to your project directory. Run the following command:</p>
+<pre><code class="language-bash">npm install ejs
+</code></pre>
+<p>This will add EJS to your project's dependencies in <code>package.json</code>.</p>
+<h2 id="step-2-register-the-view-engine"><a class="header" href="#step-2-register-the-view-engine">Step 2: Register the View Engine</a></h2>
+<p>Next, we need to configure our Express application to use EJS as the view engine. In your main application file (e.g., <code>app.js</code>), add the following code after initializing your Express app:</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+
+// Register the view engine
+app.set('view engine', 'ejs');
+</code></pre>
+<p>By setting the view engine to EJS, Express will automatically look for <code>.ejs</code> files in a <code>views</code> directory within your project.</p>
+<h2 id="step-3-create-the-views-directory"><a class="header" href="#step-3-create-the-views-directory">Step 3: Create the Views Directory</a></h2>
+<p>Create a directory named <code>views</code> in your project's root directory. This is where we will place our EJS templates.</p>
+<pre><code class="language-bash">mkdir views
+</code></pre>
+<h2 id="creating-ejs-templates"><a class="header" href="#creating-ejs-templates">Creating EJS Templates</a></h2>
+<h2 id="step-4-create-an-index-view"><a class="header" href="#step-4-create-an-index-view">Step 4: Create an Index View</a></h2>
+<p>Create a new file named <code>index.ejs</code> in the <code>views</code> directory. This will be our main template file.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+        &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="content"&gt;
+        &lt;h1&gt;Welcome to My App&lt;/h1&gt;
+        &lt;p&gt;This is a Node.js application using EJS.&lt;/p&gt;
+        &lt;div class="blogs"&gt;
+            &lt;h2&gt;All Blogs&lt;/h2&gt;
+            &lt;% if (blogs.length &gt; 0) { %&gt;
+                &lt;% blogs.forEach(blog =&gt; { %&gt;
+                    &lt;div class="blog"&gt;
+                        &lt;h3&gt;&lt;%= blog.title %&gt;&lt;/h3&gt;
+                        &lt;p&gt;&lt;%= blog.snippet %&gt;&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;% }) %&gt;
+            &lt;% } else { %&gt;
+                &lt;p&gt;There are no blogs to display.&lt;/p&gt;
+            &lt;% } %&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>This template includes placeholders for dynamic data using EJS tags (<code>&lt;%= %&gt;</code> and <code>&lt;% %&gt;</code>).</p>
+<h2 id="step-5-render-the-index-view"><a class="header" href="#step-5-render-the-index-view">Step 5: Render the Index View</a></h2>
+<p>In your main application file, create a route to render the <code>index.ejs</code> template and pass dynamic data to it:</p>
+<pre><code class="language-javascript">app.get('/', (req, res) =&gt; {
+    const blogs = [
+        { title: 'First Blog', snippet: 'This is the first blog snippet.' },
+        { title: 'Second Blog', snippet: 'This is the second blog snippet.' },
+        { title: 'Third Blog', snippet: 'This is the third blog snippet.' }
+    ];
+    res.render('index', { title: 'Home', blogs });
+});
+</code></pre>
+<p>This route handler fetches blog data and renders the <code>index.ejs</code> template, injecting the <code>title</code> and <code>blogs</code> variables.</p>
+<h2 id="creating-additional-views"><a class="header" href="#creating-additional-views">Creating Additional Views</a></h2>
+<h2 id="step-6-create-about-and-404-views"><a class="header" href="#step-6-create-about-and-404-views">Step 6: Create About and 404 Views</a></h2>
+<p>Create additional EJS templates for the "About" page and a custom 404 error page.</p>
+<h3 id="viewsaboutejs"><a class="header" href="#viewsaboutejs"><code>views/about.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+        &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="content"&gt;
+        &lt;h1&gt;About Us&lt;/h1&gt;
+        &lt;p&gt;Learn more about our application and team.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="views404ejs"><a class="header" href="#views404ejs"><code>views/404.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+        &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="content"&gt;
+        &lt;h1&gt;Page Not Found&lt;/h1&gt;
+        &lt;p&gt;The page you are looking for does not exist.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="step-7-render-additional-views"><a class="header" href="#step-7-render-additional-views">Step 7: Render Additional Views</a></h2>
+<p>Add route handlers for the "About" page and the 404 error page:</p>
+<pre><code class="language-javascript">app.get('/about', (req, res) =&gt; {
+    res.render('about', { title: 'About' });
+});
+
+// 404 page
+app.use((req, res) =&gt; {
+    res.status(404).render('404', { title: '404' });
+});
+</code></pre>
+<h2 id="step-8-create-a-form-view-for-new-blogs"><a class="header" href="#step-8-create-a-form-view-for-new-blogs">Step 8: Create a Form View for New Blogs</a></h2>
+<p>Create a new EJS template for creating a new blog:</p>
+<h3 id="viewscreateejs"><a class="header" href="#viewscreateejs"><code>views/create.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+        &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="content"&gt;
+        &lt;h1&gt;Create a New Blog&lt;/h1&gt;
+        &lt;form action="/blogs" method="POST"&gt;
+            &lt;label for="title"&gt;Blog Title:&lt;/label&gt;
+            &lt;input type="text" id="title" name="title" required&gt;
+            &lt;label for="snippet"&gt;Blog Snippet:&lt;/label&gt;
+            &lt;input type="text" id="snippet" name="snippet" required&gt;
+            &lt;label for="body"&gt;Blog Body:&lt;/label&gt;
+            &lt;textarea id="body" name="body" required&gt;&lt;/textarea&gt;
+            &lt;button type="submit"&gt;Submit&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Add a route handler to render this view:</p>
+<pre><code class="language-javascript">app.get('/blogs/create', (req, res) =&gt; {
+    res.render('create', { title: 'Create a New Blog' });
+});
+</code></pre>
+<h2 id="using-partials"><a class="header" href="#using-partials">Using Partials</a></h2>
+<p>To avoid redundancy in our templates, we can use partials to reuse common sections like the header, navigation, and footer.</p>
+<h2 id="step-9-create-partials-directory-and-files"><a class="header" href="#step-9-create-partials-directory-and-files">Step 9: Create Partials Directory and Files</a></h2>
+<p>Create a directory named <code>partials</code> within the <code>views</code> directory. Then, create three files: <code>header.ejs</code>, <code>nav.ejs</code>, and <code>footer.ejs</code>.</p>
+<pre><code class="language-bash">mkdir views/partials
+touch views/partials/header.ejs views/partials/nav.ejs views/partials/footer.ejs
+</code></pre>
+<h3 id="viewspartialsheaderejs"><a class="header" href="#viewspartialsheaderejs"><code>views/partials/header.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+</code></pre>
+<h3 id="viewspartialsnavejs"><a class="header" href="#viewspartialsnavejs"><code>views/partials/nav.ejs</code></a></h3>
+<pre><code class="language-html">&lt;nav&gt;
+    &lt;a href="/"&gt;Home&lt;/a&gt;
+    &lt;a href="/about"&gt;About&lt;/a&gt;
+    &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+<h3 id="viewspartialsfooterejs"><a class="header" href="#viewspartialsfooterejs"><code>views/partials/footer.ejs</code></a></h3>
+<pre><code class="language-html">    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="step-10-include-partials-in-templates"><a class="header" href="#step-10-include-partials-in-templates">Step 10: Include Partials in Templates</a></h2>
+<p>Update the existing templates to include these partials using the EJS <code>include</code> function.</p>
+<h3 id="viewsindexejs"><a class="header" href="#viewsindexejs"><code>views/index.ejs</code></a></h3>
+<pre><code class="language-html">&lt;%- include('partials/header') %&gt;
+&lt;%- include('partials/nav') %&gt;
+&lt;div class="content"&gt;
+    &lt;h1&gt;Welcome to My App&lt;/h1&gt;
+    &lt;p&gt;This is a Node.js application using EJS.&lt;/p&gt;
+    &lt;div class="blogs"&gt;
+        &lt;h2&gt;All Blogs&lt;/h2&gt;
+        &lt;% if (blogs.length &gt; 0) { %&gt;
+            &lt;% blogs.forEach(blog =&gt; { %&gt;
+                &lt;div class="
+
+blog"&gt;
+                    &lt;h3&gt;&lt;%= blog.title %&gt;&lt;/h3&gt;
+                    &lt;p&gt;&lt;%= blog.snippet %&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;% }) %&gt;
+        &lt;% } else { %&gt;
+            &lt;p&gt;There are no blogs to display.&lt;/p&gt;
+        &lt;% } %&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;%- include('partials/footer') %&gt;
+</code></pre>
+<h3 id="viewsaboutejs-views404ejs-viewscreateejs"><a class="header" href="#viewsaboutejs-views404ejs-viewscreateejs"><code>views/about.ejs</code>, <code>views/404.ejs</code>, <code>views/create.ejs</code></a></h3>
+<p>Update similarly by including the <code>header</code>, <code>nav</code>, and <code>footer</code> partials.</p>
+<h2 id="adding-css"><a class="header" href="#adding-css">Adding CSS</a></h2>
+<p>For simplicity, we can add CSS directly to the <code>header.ejs</code> partial. However, in a real application, you would typically serve static CSS files.</p>
+<h3 id="viewspartialsheaderejs-1"><a class="header" href="#viewspartialsheaderejs-1"><code>views/partials/header.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav {
+            background: #333;
+            color: #fff;
+            padding: 1em;
+        }
+        nav a {
+            color: #fff;
+            margin-right: 1em;
+            text-decoration: none;
+        }
+        .content {
+            padding: 1em;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../06_Express_Apps/example.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../07_View_Engines/example.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../06_Express_Apps/example.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../07_View_Engines/example.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

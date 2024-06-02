@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Example - Node.js</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../01_Introduction_Setup/index.html"><strong aria-hidden="true">1.</strong> Introduction & Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../01_Introduction_Setup/example.html"><strong aria-hidden="true">1.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../02_Basics/index.html"><strong aria-hidden="true">2.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../02_Basics/example.html"><strong aria-hidden="true">2.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../03_Clients_Servers/index.html"><strong aria-hidden="true">3.</strong> Clients Servers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../03_Clients_Servers/example.html" class="active"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../04_Requests_Responses/index.html"><strong aria-hidden="true">4.</strong> Request & Responses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../04_Requests_Responses/example.html"><strong aria-hidden="true">4.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../05_NPM/index.html"><strong aria-hidden="true">5.</strong> NPM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../05_NPM/example.html"><strong aria-hidden="true">5.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../06_Express_Apps/index.html"><strong aria-hidden="true">6.</strong> Express Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../06_Express_Apps/example.html"><strong aria-hidden="true">6.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../07_View_Engines/index.html"><strong aria-hidden="true">7.</strong> View Engines</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../07_View_Engines/example.html"><strong aria-hidden="true">7.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../08_Middleware/index.html"><strong aria-hidden="true">8.</strong> Middleware</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../08_Middleware/example.html"><strong aria-hidden="true">8.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../09_MongoDB/index.html"><strong aria-hidden="true">9.</strong> MongoDB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../09_MongoDB/example.html"><strong aria-hidden="true">9.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../10_Get_Post_Delete_Requests/index.html"><strong aria-hidden="true">10.</strong> Get, Post, Delete Requests</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../10_Get_Post_Delete_Requests/example.html"><strong aria-hidden="true">10.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../11_Express_Router_MVC/index.html"><strong aria-hidden="true">11.</strong> Express Router MVC</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../11_Express_Router_MVC/example.html"><strong aria-hidden="true">11.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../12_Wrap_Up/index.html"><strong aria-hidden="true">12.</strong> Wrap Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../12_Wrap_Up/example.html"><strong aria-hidden="true">12.1.</strong> Example</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Node.js</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="example-basic-nodejs-server"><a class="header" href="#example-basic-nodejs-server">Example: Basic Node.js Server</a></h1>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<p>Ensure you have Node.js installed on your machine. You can download it from <a href="https://nodejs.org">nodejs.org</a>.</p>
+<h2 id="step-1-create-a-project-directory"><a class="header" href="#step-1-create-a-project-directory">Step 1: Create a Project Directory</a></h2>
+<p>Create a new directory for your project and navigate into it.</p>
+<pre><code class="language-bash">mkdir nodejs-server-example
+cd nodejs-server-example
+</code></pre>
+<h2 id="step-2-initialize-a-nodejs-project"><a class="header" href="#step-2-initialize-a-nodejs-project">Step 2: Initialize a Node.js Project</a></h2>
+<p>Initialize a new Node.js project.</p>
+<pre><code class="language-bash">npm init -y
+</code></pre>
+<h2 id="step-3-create-the-server-file"><a class="header" href="#step-3-create-the-server-file">Step 3: Create the Server File</a></h2>
+<p>Create a file named <code>server.js</code>.</p>
+<pre><code class="language-bash">touch server.js
+</code></pre>
+<h2 id="step-4-write-the-server-code"><a class="header" href="#step-4-write-the-server-code">Step 4: Write the Server Code</a></h2>
+<p>Open <code>server.js</code> in your preferred code editor and add the following code:</p>
+<pre><code class="language-javascript">const http = require('http');
+
+// Create the server
+const server = http.createServer((req, res) =&gt; {
+    if (req.method === 'GET') {
+        // Handle GET request
+        if (req.url === '/') {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end('&lt;h1&gt;Hello, World!&lt;/h1&gt;');
+        } else if (req.url === '/about') {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end('&lt;h1&gt;About Page&lt;/h1&gt;');
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end('&lt;h1&gt;Page Not Found&lt;/h1&gt;');
+        }
+    } else if (req.method === 'POST') {
+        // Handle POST request
+        if (req.url === '/data') {
+            let body = '';
+            req.on('data', chunk =&gt; {
+                body += chunk.toString();
+            });
+            req.on('end', () =&gt; {
+                console.log('Received POST data:', body);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Data received', data: body }));
+            });
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end('&lt;h1&gt;Page Not Found&lt;/h1&gt;');
+        }
+    } else {
+        res.writeHead(405, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;Method Not Allowed&lt;/h1&gt;');
+    }
+});
+
+// Listen on port 3000
+const PORT = 3000;
+server.listen(PORT, 'localhost', () =&gt; {
+    console.log(`Server listening on http://localhost:${PORT}`);
+});
+</code></pre>
+<h2 id="step-5-run-the-server"><a class="header" href="#step-5-run-the-server">Step 5: Run the Server</a></h2>
+<p>Run the server using Node.js.</p>
+<pre><code class="language-bash">node server.js
+</code></pre>
+<h2 id="step-6-test-the-server"><a class="header" href="#step-6-test-the-server">Step 6: Test the Server</a></h2>
+<h3 id="test-get-requests"><a class="header" href="#test-get-requests">Test GET Requests</a></h3>
+<ol>
+<li>Open your browser and navigate to <code>http://localhost:3000</code>. You should see "Hello, World!" displayed.</li>
+<li>Navigate to <code>http://localhost:3000/about</code>. You should see "About Page" displayed.</li>
+<li>Navigate to a non-existent route like <code>http://localhost:3000/nonexistent</code>. You should see "Page Not Found" displayed.</li>
+</ol>
+<h3 id="test-post-requests"><a class="header" href="#test-post-requests">Test POST Requests</a></h3>
+<ol>
+<li>
+<p>Use a tool like <a href="https://www.postman.com/">Postman</a> or <a href="https://curl.se/">curl</a> to test POST requests.</p>
+</li>
+<li>
+<p>Send a POST request to <code>http://localhost:3000/data</code> with some JSON data.</p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/data -d '{"name": "Node.js"}' -H "Content-Type: application/json"
+</code></pre>
+<p>You should see the response with the message "Data received" and the data you sent.</p>
+</li>
+</ol>
+<h2 id="explanation-of-the-code"><a class="header" href="#explanation-of-the-code">Explanation of the Code</a></h2>
+<ul>
+<li>
+<p><strong>Creating the Server</strong>:</p>
+<pre><code class="language-javascript">const server = http.createServer((req, res) =&gt; {
+    ...
+});
+</code></pre>
+<p>The <code>createServer</code> method creates an HTTP server and sets up a request listener.</p>
+</li>
+<li>
+<p><strong>Handling GET Requests</strong>:</p>
+<pre><code class="language-javascript">if (req.method === 'GET') {
+    if (req.url === '/') {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;Hello, World!&lt;/h1&gt;');
+    } else if (req.url === '/about') {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;About Page&lt;/h1&gt;');
+    } else {
+        res.writeHead(404, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;Page Not Found&lt;/h1&gt;');
+    }
+}
+</code></pre>
+<p>This code checks the request method and URL, and responds with appropriate HTML content or a 404 error if the URL is not found.</p>
+</li>
+<li>
+<p><strong>Handling POST Requests</strong>:</p>
+<pre><code class="language-javascript">else if (req.method === 'POST') {
+    if (req.url === '/data') {
+        let body = '';
+        req.on('data', chunk =&gt; {
+            body += chunk.toString();
+        });
+        req.on('end', () =&gt; {
+            console.log('Received POST data:', body);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Data received', data: body }));
+        });
+    } else {
+        res.writeHead(404, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;Page Not Found&lt;/h1&gt;');
+    }
+}
+</code></pre>
+<p>This code handles POST requests by collecting data chunks, logging the received data, and responding with a JSON message.</p>
+</li>
+<li>
+<p><strong>Listening on a Port</strong>:</p>
+<pre><code class="language-javascript">server.listen(PORT, 'localhost', () =&gt; {
+    console.log(`Server listening on http://localhost:${PORT}`);
+});
+</code></pre>
+<p>The <code>listen</code> method starts the server on the specified port and hostname, and logs a message when the server is ready.</p>
+</li>
+</ul>
+<p>This example demonstrates a basic Node.js server that can handle different request methods and respond accordingly. By extending this foundation, you can build more complex and feature-rich servers for various applications.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../03_Clients_Servers/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../04_Requests_Responses/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../03_Clients_Servers/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../04_Requests_Responses/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,4003 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Node.js</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="01_Introduction_Setup/index.html"><strong aria-hidden="true">1.</strong> Introduction & Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="01_Introduction_Setup/example.html"><strong aria-hidden="true">1.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="02_Basics/index.html"><strong aria-hidden="true">2.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02_Basics/example.html"><strong aria-hidden="true">2.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="03_Clients_Servers/index.html"><strong aria-hidden="true">3.</strong> Clients Servers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="03_Clients_Servers/example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="04_Requests_Responses/index.html"><strong aria-hidden="true">4.</strong> Request & Responses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="04_Requests_Responses/example.html"><strong aria-hidden="true">4.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="05_NPM/index.html"><strong aria-hidden="true">5.</strong> NPM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="05_NPM/example.html"><strong aria-hidden="true">5.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="06_Express_Apps/index.html"><strong aria-hidden="true">6.</strong> Express Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="06_Express_Apps/example.html"><strong aria-hidden="true">6.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="07_View_Engines/index.html"><strong aria-hidden="true">7.</strong> View Engines</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="07_View_Engines/example.html"><strong aria-hidden="true">7.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="08_Middleware/index.html"><strong aria-hidden="true">8.</strong> Middleware</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="08_Middleware/example.html"><strong aria-hidden="true">8.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="09_MongoDB/index.html"><strong aria-hidden="true">9.</strong> MongoDB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="09_MongoDB/example.html"><strong aria-hidden="true">9.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="10_Get_Post_Delete_Requests/index.html"><strong aria-hidden="true">10.</strong> Get, Post, Delete Requests</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="10_Get_Post_Delete_Requests/example.html"><strong aria-hidden="true">10.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="11_Express_Router_MVC/index.html"><strong aria-hidden="true">11.</strong> Express Router MVC</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="11_Express_Router_MVC/example.html"><strong aria-hidden="true">11.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="12_Wrap_Up/index.html"><strong aria-hidden="true">12.</strong> Wrap Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="12_Wrap_Up/example.html"><strong aria-hidden="true">12.1.</strong> Example</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Node.js</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="nodejs---introduction--setup"><a class="header" href="#nodejs---introduction--setup">Node.js - Introduction &amp; Setup</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>In this tutorial, we will embark on a detailed journey to understand Node.js, its setup, and its fundamental concepts. We will avoid informal language and focus on a precise and scientific approach, ensuring the content reflects the rigor and standards of the field.</p>
+<h2 id="what-is-nodejs"><a class="header" href="#what-is-nodejs">What is Node.js?</a></h2>
+<p>Node.js is a runtime environment that allows JavaScript to be executed on the server-side, outside the browser. Traditionally, JavaScript was confined to the browser, where it was used to add interactivity to web pages. However, Node.js enables JavaScript to run directly on a computer or server, providing a powerful tool for backend development.</p>
+<h2 id="the-v8-engine"><a class="header" href="#the-v8-engine">The V8 Engine</a></h2>
+<p>The V8 engine, developed by Google, is a key component of Node.js. It is a high-performance JavaScript engine written in C++ that compiles JavaScript into machine code at runtime. This allows JavaScript to be executed efficiently outside the browser.</p>
+<h2 id="nodejs-and-the-v8-engine"><a class="header" href="#nodejs-and-the-v8-engine">Node.js and the V8 Engine</a></h2>
+<p>Node.js is essentially a wrapper around the V8 engine. By incorporating the V8 engine, Node.js allows JavaScript to be compiled and executed directly on a computer or server. Additionally, Node.js provides extra functionality, enabling JavaScript to perform tasks typically associated with server-side languages, such as reading and writing files, connecting to databases, and acting as a server.</p>
+<h2 id="why-use-nodejs"><a class="header" href="#why-use-nodejs">Why Use Node.js?</a></h2>
+<p>Node.js offers several advantages for web development:</p>
+<ol>
+<li><strong>Single Language for Frontend and Backend</strong>: If you are already familiar with JavaScript, there is no need to learn a new server-side language. Node.js allows you to use JavaScript on both the frontend and backend.</li>
+<li><strong>Community and Ecosystem</strong>: Node.js has a vast and active community, providing a wealth of third-party packages and tools to aid in web development.</li>
+<li><strong>Performance</strong>: The V8 engine compiles JavaScript into machine code, ensuring high performance.</li>
+</ol>
+<h2 id="installing-nodejs"><a class="header" href="#installing-nodejs">Installing Node.js</a></h2>
+<p>To begin using Node.js, you need to install it on your computer.</p>
+<h2 id="checking-existing-installation"><a class="header" href="#checking-existing-installation">Checking Existing Installation</a></h2>
+<p>First, check if Node.js is already installed:</p>
+<ol>
+<li>Open a terminal.</li>
+<li>Type <code>node -v</code> and press Enter.</li>
+<li>If Node.js is installed, you will see the version number. If not, or if the version is outdated, follow the steps below to install or update Node.js.</li>
+</ol>
+<h2 id="installing-nodejs-1"><a class="header" href="#installing-nodejs-1">Installing Node.js</a></h2>
+<ol>
+<li>Go to the <a href="https://nodejs.org">Node.js website</a>.</li>
+<li>Click on the download button to install the latest version.</li>
+<li>Run the installer and follow the prompts to complete the installation.</li>
+<li>After installation, close and reopen the terminal.</li>
+<li>Verify the installation by typing <code>node -v</code> again.</li>
+</ol>
+<h2 id="running-javascript-with-nodejs"><a class="header" href="#running-javascript-with-nodejs">Running JavaScript with Node.js</a></h2>
+<p>With Node.js installed, you can now run JavaScript directly on your computer.</p>
+<h2 id="running-javascript-in-the-terminal"><a class="header" href="#running-javascript-in-the-terminal">Running JavaScript in the Terminal</a></h2>
+<ol>
+<li>
+<p>Open a terminal.</p>
+</li>
+<li>
+<p>Type <code>node</code> and press Enter to start the Node.js REPL (Read-Eval-Print Loop).</p>
+</li>
+<li>
+<p>You can now type JavaScript code directly into the terminal. For example:</p>
+<pre><code class="language-javascript">5 + 5
+</code></pre>
+<p>Press Enter, and you will see the result <code>10</code>.</p>
+</li>
+</ol>
+<h2 id="creating-and-running-a-javascript-file"><a class="header" href="#creating-and-running-a-javascript-file">Creating and Running a JavaScript File</a></h2>
+<ol>
+<li>
+<p>Create a new file named <code>test.js</code>.</p>
+</li>
+<li>
+<p>Open the file in a text editor (e.g., Visual Studio Code, Sublime Text, Atom).</p>
+</li>
+<li>
+<p>Add the following code:</p>
+<pre><code class="language-javascript">const name = 'Mario';
+console.log(name);
+</code></pre>
+</li>
+<li>
+<p>Save the file.</p>
+</li>
+<li>
+<p>In the terminal, navigate to the directory containing <code>test.js</code>.</p>
+</li>
+<li>
+<p>Run the file with the command:</p>
+<pre><code class="language-bash">node test.js
+</code></pre>
+<p>You should see <code>Mario</code> printed in the terminal.</p>
+</li>
+</ol>
+<h2 id="setting-up-a-development-environment"><a class="header" href="#setting-up-a-development-environment">Setting Up a Development Environment</a></h2>
+<h2 id="visual-studio-code"><a class="header" href="#visual-studio-code">Visual Studio Code</a></h2>
+<p>Visual Studio Code (VS Code) is a popular and powerful text editor for JavaScript and Node.js development.</p>
+<ol>
+<li>Download and install VS Code from <a href="https://code.visualstudio.com">code.visualstudio.com</a>.</li>
+<li>Open VS Code and create a new project folder.</li>
+<li>Open the terminal in VS Code (<code>View &gt; Terminal</code>).</li>
+</ol>
+<h2 id="creating-a-project-directory"><a class="header" href="#creating-a-project-directory">Creating a Project Directory</a></h2>
+<ol>
+<li>
+<p>In the terminal, navigate to your desired location and create a new directory:</p>
+<pre><code class="language-bash">mkdir node-crash-course
+cd node-crash-course
+</code></pre>
+</li>
+<li>
+<p>Open the directory in VS Code:</p>
+<pre><code class="language-bash">code .
+</code></pre>
+</li>
+</ol>
+<h2 id="writing-and-running-javascript-in-vs-code"><a class="header" href="#writing-and-running-javascript-in-vs-code">Writing and Running JavaScript in VS Code</a></h2>
+<ol>
+<li>
+<p>Create a new file named <code>test.js</code>.</p>
+</li>
+<li>
+<p>Add the following code:</p>
+<pre><code class="language-javascript">const name = 'Yoshi';
+console.log(name);
+</code></pre>
+</li>
+<li>
+<p>Save the file.</p>
+</li>
+<li>
+<p>In the VS Code terminal, run the file:</p>
+<pre><code class="language-bash">node test.js
+</code></pre>
+<p>You should see <code>Yoshi</code> printed in the terminal.</p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-creating-a-basic-http-server-with-nodejs"><a class="header" href="#example-creating-a-basic-http-server-with-nodejs">Example: Creating a Basic HTTP Server with Node.js</a></h1>
+<p>In this section, we will create a basic HTTP server using Node.js. This example will demonstrate how to set up a server that responds to HTTP requests.</p>
+<h2 id="step-by-step-guide"><a class="header" href="#step-by-step-guide">Step-by-Step Guide</a></h2>
+<ol>
+<li>
+<p><strong>Create a Project Directory</strong>: Open your terminal and create a new directory for your project.</p>
+<pre><code class="language-bash">mkdir node-http-server
+cd node-http-server
+</code></pre>
+</li>
+<li>
+<p><strong>Initialize a Node.js Project</strong>: Initialize a new Node.js project using <code>npm</code>.</p>
+<pre><code class="language-bash">npm init -y
+</code></pre>
+<p>This command will create a <code>package.json</code> file with default settings.</p>
+</li>
+<li>
+<p><strong>Create the Server File</strong>: Create a new file named <code>server.js</code> in your project directory.</p>
+</li>
+<li>
+<p><strong>Write the Server Code</strong>: Open <code>server.js</code> in your text editor and add the following code:</p>
+<pre><code class="language-javascript">// Import the HTTP module
+const http = require('http');
+
+// Define the hostname and port
+const hostname = '127.0.0.1';
+const port = 3000;
+
+// Create the server
+const server = http.createServer((req, res) =&gt; {
+  // Set the response header
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  // Send the response body
+  res.end('Hello, World!\n');
+});
+
+// Listen on the specified port and hostname
+server.listen(port, hostname, () =&gt; {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+</code></pre>
+</li>
+<li>
+<p><strong>Run the Server</strong>: In the terminal, run the server using the <code>node</code> command.</p>
+<pre><code class="language-bash">node server.js
+</code></pre>
+</li>
+<li>
+<p><strong>Test the Server</strong>: Open a web browser and navigate to <code>http://127.0.0.1:3000/</code>. You should see the message "Hello, World!" displayed in the browser.</p>
+</li>
+</ol>
+<h2 id="detailed-explanation"><a class="header" href="#detailed-explanation">Detailed Explanation</a></h2>
+<ul>
+<li>
+<p><strong>HTTP Module</strong>: The <code>http</code> module is a core Node.js module that allows us to create an HTTP server.</p>
+<pre><code class="language-javascript">const http = require('http');
+</code></pre>
+</li>
+<li>
+<p><strong>Hostname and Port</strong>: We define the hostname and port where the server will listen for incoming requests.</p>
+<pre><code class="language-javascript">const hostname = '127.0.0.1';
+const port = 3000;
+</code></pre>
+</li>
+<li>
+<p><strong>Create Server</strong>: The <code>http.createServer()</code> method creates a new HTTP server and takes a callback function that is executed every time the server receives a request.</p>
+<pre><code class="language-javascript">const server = http.createServer((req, res) =&gt; {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello, World!\n');
+});
+</code></pre>
+<ul>
+<li><strong>Request and Response</strong>: The callback function has two parameters: <code>req</code> (request) and <code>res</code> (response). We set the response status code to <code>200</code> (OK) and the content type to <code>text/plain</code>. Finally, we send the response body with the message "Hello, World!".</li>
+</ul>
+</li>
+<li>
+<p><strong>Listen Method</strong>: The <code>server.listen()</code> method starts the server, making it listen for incoming connections on the specified port and hostname.</p>
+<pre><code class="language-javascript">server.listen(port, hostname, () =&gt; {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+</code></pre>
+</li>
+</ul>
+<h2 id="code-snippet"><a class="header" href="#code-snippet">Code Snippet</a></h2>
+<p>Here is the complete code snippet for creating a basic HTTP server:</p>
+<pre><code class="language-javascript">// Import the HTTP module
+const http = require('http');
+
+// Define the hostname and port
+const hostname = '127.0.0.1';
+const port = 3000;
+
+// Create the server
+const server = http.createServer((req, res) =&gt; {
+  // Set the response header
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  // Send the response body
+  res.end('Hello, World!\n');
+});
+
+// Listen on the specified port and hostname
+server.listen(port, hostname, () =&gt; {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+</code></pre>
+<p>By following these steps, you have created a simple HTTP server using Node.js. This server listens for requests on port 3000 and responds with "Hello, World!". This example serves as a foundation for building more complex server-side applications with Node.js.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs-basics"><a class="header" href="#nodejs-basics">Node.js Basics</a></h1>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<p>In this tutorial, we will explore the basics of Node.js, focusing on running JavaScript code on the server side. We will delve into fundamental concepts such as the global object, modules, file system interactions, and streams. This tutorial aims to provide a thorough understanding of these core features, ensuring a strong foundation for further learning and development in Node.js.</p>
+<h2 id="running-javascript-files-with-nodejs"><a class="header" href="#running-javascript-files-with-nodejs">Running JavaScript Files with Node.js</a></h2>
+<p>To begin, we will run a simple JavaScript file using Node.js. This will help us understand how to execute JavaScript code on the server side.</p>
+<ol>
+<li>Create a file named <code>test.js</code> with the following content:</li>
+</ol>
+<pre><code class="language-javascript">function greet(name) {
+    console.log(`Hello, ${name}`);
+}
+
+greet('Mario');
+greet('Jasha');
+</code></pre>
+<ol start="2">
+<li>Open a terminal in the directory containing <code>test.js</code> and run the file with the following command:</li>
+</ol>
+<pre><code class="language-bash">node test.js
+</code></pre>
+<p>You should see the following output:</p>
+<pre><code>Hello, Mario
+Hello, Jasha
+</code></pre>
+<p>This demonstrates how easy it is to run JavaScript files using Node.js. The syntax and language constructs are the same as those used in the browser, allowing for seamless transition between client-side and server-side development.</p>
+<h2 id="the-global-object"><a class="header" href="#the-global-object">The Global Object</a></h2>
+<p>In Node.js, the global object is different from the <code>window</code> object in browsers. The global object in Node.js is called <code>global</code>, and it provides several methods and properties that can be used out of the box.</p>
+<ol>
+<li>Create a file named <code>global.js</code> with the following content:</li>
+</ol>
+<pre><code class="language-javascript">console.log(global);
+
+setTimeout(() =&gt; {
+    console.log('In the timeout');
+}, 3000);
+
+const interval = setInterval(() =&gt; {
+    console.log('In the interval');
+}, 1000);
+
+setTimeout(() =&gt; {
+    clearInterval(interval);
+    console.log('Interval cleared');
+}, 3000);
+</code></pre>
+<ol start="2">
+<li>Run the file with the following command:</li>
+</ol>
+<pre><code class="language-bash">node global.js
+</code></pre>
+<p>You should see the global object logged to the console, followed by "In the interval" logged every second, and "Interval cleared" logged after three seconds.</p>
+<h2 id="working-with-modules"><a class="header" href="#working-with-modules">Working with Modules</a></h2>
+<p>Node.js uses a module system to organize code into reusable pieces. Modules can be created and imported using the <code>require</code> function.</p>
+<ol>
+<li>Create two files, <code>people.js</code> and <code>modules.js</code>, with the following content:</li>
+</ol>
+<p><code>people.js</code>:</p>
+<pre><code class="language-javascript">const people = ['Mario', 'Luigi', 'Peach', 'Toad'];
+const ages = [25, 30, 28, 32];
+
+module.exports = {
+    people,
+    ages
+};
+</code></pre>
+<p><code>modules.js</code>:</p>
+<pre><code class="language-javascript">const { people, ages } = require('./people');
+
+console.log(people, ages);
+</code></pre>
+<ol start="2">
+<li>Run <code>modules.js</code> with the following command:</li>
+</ol>
+<pre><code class="language-bash">node modules.js
+</code></pre>
+<p>You should see the arrays logged to the console. This demonstrates how to export and import multiple values from a module.</p>
+<h2 id="file-system-operations"><a class="header" href="#file-system-operations">File System Operations</a></h2>
+<p>Node.js provides the <code>fs</code> module for interacting with the file system. This includes reading and writing files, as well as creating and deleting directories.</p>
+<ol>
+<li>Create a file named <code>files.js</code> with the following content:</li>
+</ol>
+<pre><code class="language-javascript">const fs = require('fs');
+
+// Reading files
+fs.readFile('./docs/blog1.txt', (err, data) =&gt; {
+    if (err) {
+        console.log(err);
+    }
+    console.log(data.toString());
+});
+
+// Writing files
+fs.writeFile('./docs/blog1.txt', 'Hello, world!', () =&gt; {
+    console.log('File was written');
+});
+
+// Creating directories
+if (!fs.existsSync('./assets')) {
+    fs.mkdir('./assets', (err) =&gt; {
+        if (err) {
+            console.log(err);
+        }
+        console.log('Folder created');
+    });
+} else {
+    fs.rmdir('./assets', (err) =&gt; {
+        if (err) {
+            console.log(err);
+        }
+        console.log('Folder deleted');
+    });
+}
+
+// Deleting files
+if (fs.existsSync('./docs/delete-me.txt')) {
+    fs.unlink('./docs/delete-me.txt', (err) =&gt; {
+        if (err) {
+            console.log(err);
+        }
+        console.log('File deleted');
+    });
+}
+</code></pre>
+<ol start="2">
+<li>Run <code>files.js</code> with the following command:</li>
+</ol>
+<pre><code class="language-bash">node files.js
+</code></pre>
+<p>This script demonstrates how to read and write files, create and delete directories, and delete files using the <code>fs</code> module.</p>
+<h2 id="working-with-streams"><a class="header" href="#working-with-streams">Working with Streams</a></h2>
+<p>For efficient handling of large files, Node.js provides streams. Streams allow reading and writing data in chunks, rather than loading the entire file into memory.</p>
+<ol>
+<li>Create a file named <code>streams.js</code> with the following content:</li>
+</ol>
+<pre><code class="language-javascript">const fs = require('fs');
+
+const readStream = fs.createReadStream('./docs/blog3.txt', { encoding: 'utf-8' });
+const writeStream = fs.createWriteStream('./docs/blog4.txt');
+
+readStream.on('data', (chunk) =&gt; {
+    console.log('New chunk:', chunk);
+    writeStream.write('\nNEW CHUNK:\n');
+    writeStream.write(chunk);
+});
+
+// Piping
+readStream.pipe(writeStream);
+</code></pre>
+<ol start="2">
+<li>Run <code>streams.js</code> with the following command:</li>
+</ol>
+<pre><code class="language-bash">node streams.js
+</code></pre>
+<p>This script demonstrates how to create read and write streams and how to use the <code>pipe</code> method to efficiently transfer data from one stream to another.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-basics"><a class="header" href="#example-basics">Example: Basics</a></h1>
+<h2 id="project-structure"><a class="header" href="#project-structure">Project Structure</a></h2>
+<pre><code class="language-sh">nodejs-basics/
+├── data/
+│   └── users.txt
+├── modules/
+│   └── userProcessor.js
+├── main.js
+└── output/
+    └── processed-users.txt
+</code></pre>
+<h2 id="step-1-setting-up-the-project"><a class="header" href="#step-1-setting-up-the-project">Step 1: Setting Up the Project</a></h2>
+<ol>
+<li>
+<p><strong>Create the directory structure</strong> as shown above.</p>
+</li>
+<li>
+<p><strong>Create <code>users.txt</code> in the <code>data</code> directory</strong> with the following content:</p>
+</li>
+</ol>
+<pre><code>Alice,30
+Bob,25
+Charlie,35
+</code></pre>
+<ol start="3">
+<li><strong>Create <code>userProcessor.js</code> in the <code>modules</code> directory</strong> with the following content:</li>
+</ol>
+<pre><code class="language-javascript">// modules/userProcessor.js
+
+const processUser = (user) =&gt; {
+    const [name, age] = user.split(',');
+    return {
+        name: name.trim(),
+        age: parseInt(age.trim(), 10)
+    };
+};
+
+const formatUser = (user) =&gt; {
+    return `Name: ${user.name}, Age: ${user.age}`;
+};
+
+module.exports = { processUser, formatUser };
+</code></pre>
+<h2 id="step-2-create-the-main-application-file"><a class="header" href="#step-2-create-the-main-application-file">Step 2: Create the Main Application File</a></h2>
+<ol start="4">
+<li><strong>Create <code>main.js</code> in the root directory</strong> with the following content:</li>
+</ol>
+<pre><code class="language-javascript">// main.js
+
+const fs = require('fs');
+const path = require('path');
+const { processUser, formatUser } = require('./modules/userProcessor');
+
+const inputFilePath = path.join(__dirname, 'data', 'users.txt');
+const outputFilePath = path.join(__dirname, 'output', 'processed-users.txt');
+
+const readStream = fs.createReadStream(inputFilePath, { encoding: 'utf-8' });
+const writeStream = fs.createWriteStream(outputFilePath);
+
+readStream.on('data', (chunk) =&gt; {
+    const users = chunk.split('\n');
+    users.forEach(user =&gt; {
+        if (user.trim()) {
+            const processedUser = processUser(user);
+            const formattedUser = formatUser(processedUser);
+            writeStream.write(formattedUser + '\n');
+        }
+    });
+});
+
+readStream.on('end', () =&gt; {
+    console.log('Data processing completed. Check the output file for results.');
+});
+
+readStream.on('error', (err) =&gt; {
+    console.error('Error reading input file:', err);
+});
+
+writeStream.on('error', (err) =&gt; {
+    console.error('Error writing to output file:', err);
+});
+</code></pre>
+<h2 id="step-3-running-the-application"><a class="header" href="#step-3-running-the-application">Step 3: Running the Application</a></h2>
+<ol start="5">
+<li>Open a terminal in the project directory and run the following command:</li>
+</ol>
+<pre><code class="language-bash">node main.js
+</code></pre>
+<h2 id="explanation"><a class="header" href="#explanation">Explanation</a></h2>
+<ol>
+<li>
+<p><strong>Modules</strong>:</p>
+<ul>
+<li><code>userProcessor.js</code> contains functions to process and format user data.</li>
+<li><code>processUser</code>: Parses a user string into an object.</li>
+<li><code>formatUser</code>: Formats a user object into a string.</li>
+</ul>
+</li>
+<li>
+<p><strong>File System Operations</strong>:</p>
+<ul>
+<li><code>fs.createReadStream</code>: Reads the <code>users.txt</code> file in chunks.</li>
+<li><code>fs.createWriteStream</code>: Writes processed user data to <code>processed-users.txt</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Streams</strong>:</p>
+<ul>
+<li>The <code>readStream</code> reads data from <code>users.txt</code> and processes each line.</li>
+<li>The <code>writeStream</code> writes the formatted data to <code>processed-users.txt</code>.</li>
+</ul>
+</li>
+</ol>
+<h2 id="output"><a class="header" href="#output">Output</a></h2>
+<p>After running the application, <code>processed-users.txt</code> in the <code>output</code> directory should contain:</p>
+<pre><code>Name: Alice, Age: 30
+Name: Bob, Age: 25
+Name: Charlie, Age: 35
+</code></pre>
+<p>This example demonstrates how to use Node.js to read, process, and write data using modules, file system operations, and streams.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs---clients--servers"><a class="header" href="#nodejs---clients--servers">Node.js - Clients &amp; Servers</a></h1>
+<h2 id="introduction-2"><a class="header" href="#introduction-2">Introduction</a></h2>
+<p>In this tutorial, we will delve into the fundamentals of how clients and servers interact in the context of Node.js. We will critically analyze and correct any inaccuracies in the provided text, ensuring that our content reflects the rigor and standards of the field. This tutorial will cover creating a server using Node.js, understanding the HTTP protocol, and handling client requests and server responses.</p>
+<h2 id="the-client-server-model"><a class="header" href="#the-client-server-model">The Client-Server Model</a></h2>
+<p>A client-server model is fundamental to web architecture. The client, typically a web browser, sends requests to the server, which processes these requests and sends back the appropriate responses. These responses can be HTML pages, images, CSS, JSON data, or other resources.</p>
+<h2 id="the-request-response-cycle"><a class="header" href="#the-request-response-cycle">The Request-Response Cycle</a></h2>
+<p>When you enter a website address in a browser and press Enter, the browser sends an HTTP request to the server hosting the website. The server processes this request and responds, typically with an HTML page that the browser renders. This cycle is the essence of web communication.</p>
+<h2 id="ip-addresses-and-domain-names"><a class="header" href="#ip-addresses-and-domain-names">IP Addresses and Domain Names</a></h2>
+<p>Each computer connected to the Internet has a unique IP address. Servers hosting websites have specific IP addresses, which clients use to connect. However, remembering numerical IP addresses is impractical, so we use domain names (e.g., &lt;www.example.com&gt;). Domain names are mapped to IP addresses via the Domain Name System (DNS).</p>
+<h2 id="http-protocol"><a class="header" href="#http-protocol">HTTP Protocol</a></h2>
+<p>HTTP (Hypertext Transfer Protocol) is the foundation of data communication on the web. It defines how messages are formatted and transmitted, and how web servers and browsers should respond to various commands.</p>
+<h2 id="creating-a-server-in-nodejs"><a class="header" href="#creating-a-server-in-nodejs">Creating a Server in Node.js</a></h2>
+<h2 id="setting-up-the-environment"><a class="header" href="#setting-up-the-environment">Setting Up the Environment</a></h2>
+<p>To create a server, we first need to set up our development environment. Ensure that Node.js is installed on your machine. You can download it from <a href="https://nodejs.org">nodejs.org</a>.</p>
+<h2 id="creating-the-server"><a class="header" href="#creating-the-server">Creating the Server</a></h2>
+<p>Let's create a simple HTTP server in Node.js that listens for requests and responds accordingly.</p>
+<ol>
+<li>
+<p><strong>Create a new file</strong>: Create a file named <code>server.js</code>.</p>
+</li>
+<li>
+<p><strong>Require the HTTP module</strong>:</p>
+<pre><code class="language-javascript">const http = require('http');
+</code></pre>
+</li>
+<li>
+<p><strong>Create the server</strong>:</p>
+<pre><code class="language-javascript">const server = http.createServer((req, res) =&gt; {
+    console.log('Request received');
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Hello, World!');
+});
+</code></pre>
+</li>
+<li>
+<p><strong>Listen on a specific port</strong>:</p>
+<pre><code class="language-javascript">server.listen(3000, 'localhost', () =&gt; {
+    console.log('Server listening on port 3000');
+});
+</code></pre>
+</li>
+</ol>
+<h2 id="explanation-of-the-code"><a class="header" href="#explanation-of-the-code">Explanation of the Code</a></h2>
+<ul>
+<li>
+<p><strong>Requiring the HTTP Module</strong>:</p>
+<pre><code class="language-javascript">const http = require('http');
+</code></pre>
+<p>We require Node.js's built-in <code>http</code> module to create an HTTP server.</p>
+</li>
+<li>
+<p><strong>Creating the Server</strong>:</p>
+<pre><code class="language-javascript">const server = http.createServer((req, res) =&gt; {
+    console.log('Request received');
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Hello, World!');
+});
+</code></pre>
+<p>The <code>createServer</code> method creates a new HTTP server and sets up a request listener function that will execute whenever the server receives a request. The listener function takes two arguments: <code>req</code> (the request object) and <code>res</code> (the response object).</p>
+<ul>
+<li><code>console.log('Request received');</code> logs a message to the console whenever a request is received.</li>
+<li><code>res.writeHead(200, { 'Content-Type': 'text/plain' });</code> sets the HTTP status code to 200 (OK) and the content type to plain text.</li>
+<li><code>res.end('Hello, World!');</code> sends the response back to the client and ends the response process.</li>
+</ul>
+</li>
+<li>
+<p><strong>Listening on a Specific Port</strong>:</p>
+<pre><code class="language-javascript">server.listen(3000, 'localhost', () =&gt; {
+    console.log('Server listening on port 3000');
+});
+</code></pre>
+<p>The <code>listen</code> method makes the server listen on port 3000 at the hostname 'localhost'. The callback function logs a message to the console indicating that the server is listening for requests.</p>
+</li>
+</ul>
+<h2 id="running-the-server"><a class="header" href="#running-the-server">Running the Server</a></h2>
+<p>To run the server, open your terminal, navigate to the directory containing <code>server.js</code>, and execute the following command:</p>
+<pre><code class="language-bash">node server.js
+</code></pre>
+<p>You should see the message "Server listening on port 3000" in the console. Open your browser and go to <code>http://localhost:3000</code>. You should see the message "Hello, World!" displayed in the browser.</p>
+<h2 id="handling-different-request-types"><a class="header" href="#handling-different-request-types">Handling Different Request Types</a></h2>
+<p>In addition to GET requests, HTTP supports various request methods such as POST, PUT, DELETE, etc. Here, we'll briefly cover how to handle POST requests.</p>
+<ol>
+<li>
+<p><strong>Modify the server creation</strong>:</p>
+<pre><code class="language-javascript">const server = http.createServer((req, res) =&gt; {
+    if (req.method === 'POST') {
+        let body = '';
+        req.on('data', chunk =&gt; {
+            body += chunk.toString();
+        });
+        req.on('end', () =&gt; {
+            console.log('Received POST data:', body);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Data received' }));
+        });
+    } else {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Hello, World!');
+    }
+});
+</code></pre>
+</li>
+</ol>
+<h2 id="explanation-of-the-code-1"><a class="header" href="#explanation-of-the-code-1">Explanation of the Code</a></h2>
+<ul>
+<li>
+<p><strong>Handling POST Requests</strong>:</p>
+<pre><code class="language-javascript">if (req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk =&gt; {
+        body += chunk.toString();
+    });
+    req.on('end', () =&gt; {
+        console.log('Received POST data:', body);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Data received' }));
+    });
+} else {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Hello, World!');
+}
+</code></pre>
+<p>This code checks if the request method is POST. If it is, it collects the data chunks sent in the request body and logs them. Once all data is received, it sends a JSON response confirming receipt of the data. For GET requests, it sends the default "Hello, World!" response.</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-basic-nodejs-server"><a class="header" href="#example-basic-nodejs-server">Example: Basic Node.js Server</a></h1>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<p>Ensure you have Node.js installed on your machine. You can download it from <a href="https://nodejs.org">nodejs.org</a>.</p>
+<h2 id="step-1-create-a-project-directory"><a class="header" href="#step-1-create-a-project-directory">Step 1: Create a Project Directory</a></h2>
+<p>Create a new directory for your project and navigate into it.</p>
+<pre><code class="language-bash">mkdir nodejs-server-example
+cd nodejs-server-example
+</code></pre>
+<h2 id="step-2-initialize-a-nodejs-project"><a class="header" href="#step-2-initialize-a-nodejs-project">Step 2: Initialize a Node.js Project</a></h2>
+<p>Initialize a new Node.js project.</p>
+<pre><code class="language-bash">npm init -y
+</code></pre>
+<h2 id="step-3-create-the-server-file"><a class="header" href="#step-3-create-the-server-file">Step 3: Create the Server File</a></h2>
+<p>Create a file named <code>server.js</code>.</p>
+<pre><code class="language-bash">touch server.js
+</code></pre>
+<h2 id="step-4-write-the-server-code"><a class="header" href="#step-4-write-the-server-code">Step 4: Write the Server Code</a></h2>
+<p>Open <code>server.js</code> in your preferred code editor and add the following code:</p>
+<pre><code class="language-javascript">const http = require('http');
+
+// Create the server
+const server = http.createServer((req, res) =&gt; {
+    if (req.method === 'GET') {
+        // Handle GET request
+        if (req.url === '/') {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end('&lt;h1&gt;Hello, World!&lt;/h1&gt;');
+        } else if (req.url === '/about') {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end('&lt;h1&gt;About Page&lt;/h1&gt;');
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end('&lt;h1&gt;Page Not Found&lt;/h1&gt;');
+        }
+    } else if (req.method === 'POST') {
+        // Handle POST request
+        if (req.url === '/data') {
+            let body = '';
+            req.on('data', chunk =&gt; {
+                body += chunk.toString();
+            });
+            req.on('end', () =&gt; {
+                console.log('Received POST data:', body);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Data received', data: body }));
+            });
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end('&lt;h1&gt;Page Not Found&lt;/h1&gt;');
+        }
+    } else {
+        res.writeHead(405, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;Method Not Allowed&lt;/h1&gt;');
+    }
+});
+
+// Listen on port 3000
+const PORT = 3000;
+server.listen(PORT, 'localhost', () =&gt; {
+    console.log(`Server listening on http://localhost:${PORT}`);
+});
+</code></pre>
+<h2 id="step-5-run-the-server"><a class="header" href="#step-5-run-the-server">Step 5: Run the Server</a></h2>
+<p>Run the server using Node.js.</p>
+<pre><code class="language-bash">node server.js
+</code></pre>
+<h2 id="step-6-test-the-server"><a class="header" href="#step-6-test-the-server">Step 6: Test the Server</a></h2>
+<h3 id="test-get-requests"><a class="header" href="#test-get-requests">Test GET Requests</a></h3>
+<ol>
+<li>Open your browser and navigate to <code>http://localhost:3000</code>. You should see "Hello, World!" displayed.</li>
+<li>Navigate to <code>http://localhost:3000/about</code>. You should see "About Page" displayed.</li>
+<li>Navigate to a non-existent route like <code>http://localhost:3000/nonexistent</code>. You should see "Page Not Found" displayed.</li>
+</ol>
+<h3 id="test-post-requests"><a class="header" href="#test-post-requests">Test POST Requests</a></h3>
+<ol>
+<li>
+<p>Use a tool like <a href="https://www.postman.com/">Postman</a> or <a href="https://curl.se/">curl</a> to test POST requests.</p>
+</li>
+<li>
+<p>Send a POST request to <code>http://localhost:3000/data</code> with some JSON data.</p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/data -d '{"name": "Node.js"}' -H "Content-Type: application/json"
+</code></pre>
+<p>You should see the response with the message "Data received" and the data you sent.</p>
+</li>
+</ol>
+<h2 id="explanation-of-the-code-2"><a class="header" href="#explanation-of-the-code-2">Explanation of the Code</a></h2>
+<ul>
+<li>
+<p><strong>Creating the Server</strong>:</p>
+<pre><code class="language-javascript">const server = http.createServer((req, res) =&gt; {
+    ...
+});
+</code></pre>
+<p>The <code>createServer</code> method creates an HTTP server and sets up a request listener.</p>
+</li>
+<li>
+<p><strong>Handling GET Requests</strong>:</p>
+<pre><code class="language-javascript">if (req.method === 'GET') {
+    if (req.url === '/') {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;Hello, World!&lt;/h1&gt;');
+    } else if (req.url === '/about') {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;About Page&lt;/h1&gt;');
+    } else {
+        res.writeHead(404, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;Page Not Found&lt;/h1&gt;');
+    }
+}
+</code></pre>
+<p>This code checks the request method and URL, and responds with appropriate HTML content or a 404 error if the URL is not found.</p>
+</li>
+<li>
+<p><strong>Handling POST Requests</strong>:</p>
+<pre><code class="language-javascript">else if (req.method === 'POST') {
+    if (req.url === '/data') {
+        let body = '';
+        req.on('data', chunk =&gt; {
+            body += chunk.toString();
+        });
+        req.on('end', () =&gt; {
+            console.log('Received POST data:', body);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Data received', data: body }));
+        });
+    } else {
+        res.writeHead(404, { 'Content-Type': 'text/html' });
+        res.end('&lt;h1&gt;Page Not Found&lt;/h1&gt;');
+    }
+}
+</code></pre>
+<p>This code handles POST requests by collecting data chunks, logging the received data, and responding with a JSON message.</p>
+</li>
+<li>
+<p><strong>Listening on a Port</strong>:</p>
+<pre><code class="language-javascript">server.listen(PORT, 'localhost', () =&gt; {
+    console.log(`Server listening on http://localhost:${PORT}`);
+});
+</code></pre>
+<p>The <code>listen</code> method starts the server on the specified port and hostname, and logs a message when the server is ready.</p>
+</li>
+</ul>
+<p>This example demonstrates a basic Node.js server that can handle different request methods and respond accordingly. By extending this foundation, you can build more complex and feature-rich servers for various applications.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs----requests--responses"><a class="header" href="#nodejs----requests--responses">Node.js  - Requests &amp; Responses</a></h1>
+<p>In this tutorial, we will delve into handling requests and responses in a Node.js server. We will critically address key aspects of creating a robust server and implementing basic routing. Let's begin by creating a server that listens for requests and sends appropriate responses.</p>
+<h2 id="setting-up-the-server"><a class="header" href="#setting-up-the-server">Setting Up the Server</a></h2>
+<p>First, ensure you have Node.js installed. Create a file named <code>server.js</code> and add the following code:</p>
+<pre><code class="language-javascript">const http = require('http');
+
+const server = http.createServer((req, res) =&gt; {
+    console.log('Request made');
+});
+
+server.listen(3000, 'localhost', () =&gt; {
+    console.log('Listening for requests on port 3000');
+});
+</code></pre>
+<p>To run the server, use the command:</p>
+<pre><code class="language-bash">node server.js
+</code></pre>
+<p>The server listens on <code>localhost</code> at port <code>3000</code>. Any request to this server triggers the function that logs "Request made" to the console.</p>
+<h2 id="logging-the-request-object"><a class="header" href="#logging-the-request-object">Logging the Request Object</a></h2>
+<p>The request object contains crucial information about the incoming request. Modify the function to log the request object:</p>
+<pre><code class="language-javascript">const http = require('http');
+
+const server = http.createServer((req, res) =&gt; {
+    console.log(req);
+});
+
+server.listen(3000, 'localhost', () =&gt; {
+    console.log('Listening for requests on port 3000');
+});
+</code></pre>
+<p>After saving the file, restart the server and refresh your browser to observe the logged request object. To handle server restarts efficiently during development, consider using <code>nodemon</code>.</p>
+<p>Install <code>nodemon</code> globally:</p>
+<pre><code class="language-bash">npm install -g nodemon
+</code></pre>
+<p>Run the server using <code>nodemon</code>:</p>
+<pre><code class="language-bash">nodemon server.js
+</code></pre>
+<h2 id="extracting-request-details"><a class="header" href="#extracting-request-details">Extracting Request Details</a></h2>
+<p>We can extract specific details from the request object such as the URL and the request method:</p>
+<pre><code class="language-javascript">const http = require('http');
+
+const server = http.createServer((req, res) =&gt; {
+    console.log(`Request URL: ${req.url}`);
+    console.log(`Request Method: ${req.method}`);
+});
+
+server.listen(3000, 'localhost', () =&gt; {
+    console.log('Listening for requests on port 3000');
+});
+</code></pre>
+<h2 id="sending-responses"><a class="header" href="#sending-responses">Sending Responses</a></h2>
+<p>To send a response, we use the response object. We must set the response headers and the response body:</p>
+<pre><code class="language-javascript">const http = require('http');
+
+const server = http.createServer((req, res) =&gt; {
+    res.setHeader('Content-Type', 'text/plain');
+    res.write('Hello, world!');
+    res.end();
+});
+
+server.listen(3000, 'localhost', () =&gt; {
+    console.log('Listening for requests on port 3000');
+});
+</code></pre>
+<h2 id="sending-html-responses"><a class="header" href="#sending-html-responses">Sending HTML Responses</a></h2>
+<p>To send an HTML response, change the content type to <code>text/html</code> and send HTML content:</p>
+<pre><code class="language-javascript">const http = require('http');
+
+const server = http.createServer((req, res) =&gt; {
+    res.setHeader('Content-Type', 'text/html');
+    res.write('&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello, World!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;');
+    res.end();
+});
+
+server.listen(3000, 'localhost', () =&gt; {
+    console.log('Listening for requests on port 3000');
+});
+</code></pre>
+<h2 id="serving-html-files"><a class="header" href="#serving-html-files">Serving HTML Files</a></h2>
+<p>Storing HTML content in separate files is cleaner. Use the <code>fs</code> module to read files:</p>
+<pre><code class="language-javascript">const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res) =&gt; {
+    res.setHeader('Content-Type', 'text/html');
+    fs.readFile('./views/index.html', (err, data) =&gt; {
+        if (err) {
+            console.log(err);
+            res.end();
+        } else {
+            res.write(data);
+            res.end();
+        }
+    });
+});
+
+server.listen(3000, 'localhost', () =&gt; {
+    console.log('Listening for requests on port 3000');
+});
+</code></pre>
+<h2 id="implementing-basic-routing"><a class="header" href="#implementing-basic-routing">Implementing Basic Routing</a></h2>
+<p>Use a switch statement to handle different routes and serve corresponding HTML files:</p>
+<pre><code class="language-javascript">const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res) =&gt; {
+    res.setHeader('Content-Type', 'text/html');
+    let path = './views/';
+    switch(req.url) {
+        case '/':
+            path += 'index.html';
+            res.statusCode = 200;
+            break;
+        case '/about':
+            path += 'about.html';
+            res.statusCode = 200;
+            break;
+        default:
+            path += '404.html';
+            res.statusCode = 404;
+            break;
+    }
+
+    fs.readFile(path, (err, data) =&gt; {
+        if (err) {
+            console.log(err);
+            res.end();
+        } else {
+            res.write(data);
+            res.end();
+        }
+    });
+});
+
+server.listen(3000, 'localhost', () =&gt; {
+    console.log('Listening for requests on port 3000');
+});
+</code></pre>
+<h2 id="setting-response-status-codes"><a class="header" href="#setting-response-status-codes">Setting Response Status Codes</a></h2>
+<p>Set appropriate response status codes to inform the browser about the request outcome:</p>
+<pre><code class="language-javascript">const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res) =&gt; {
+    res.setHeader('Content-Type', 'text/html');
+    let path = './views/';
+    switch(req.url) {
+        case '/':
+            path += 'index.html';
+            res.statusCode = 200;
+            break;
+        case '/about':
+            path += 'about.html';
+            res.statusCode = 200;
+            break;
+        default:
+            path += '404.html';
+            res.statusCode = 404;
+            break;
+    }
+
+    fs.readFile(path, (err, data) =&gt; {
+        if (err) {
+            console.log(err);
+            res.end();
+        } else {
+            res.write(data);
+            res.end();
+        }
+    });
+});
+
+server.listen(3000, 'localhost', () =&gt; {
+    console.log('Listening for requests on port 3000');
+});
+</code></pre>
+<h2 id="redirecting-requests"><a class="header" href="#redirecting-requests">Redirecting Requests</a></h2>
+<p>To handle redirects, use the <code>Location</code> header and a 301 status code:</p>
+<pre><code class="language-javascript">const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res) =&gt; {
+    res.setHeader('Content-Type', 'text/html');
+    let path = './views/';
+    switch(req.url) {
+        case '/':
+            path += 'index.html';
+            res.statusCode = 200;
+            break;
+        case '/about':
+            path += 'about.html';
+            res.statusCode = 200;
+            break;
+        case '/about-me':
+            res.statusCode = 301;
+            res.setHeader('Location', '/about');
+            res.end();
+            break;
+        default:
+            path += '404.html';
+            res.statusCode = 404;
+            break;
+    }
+
+    if (res.statusCode !== 301) {
+        fs.readFile(path, (err, data) =&gt; {
+            if (err) {
+                console.log(err);
+                res.end();
+            } else {
+                res.write(data);
+                res.end();
+            }
+        });
+    }
+});
+
+server.listen(3000, 'localhost', () =&gt; {
+    console.log('Listening for requests on port 3000');
+});
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-request-responses"><a class="header" href="#example-request-responses">Example: Request Responses</a></h1>
+<h2 id="step"><a class="header" href="#step">Step</a></h2>
+<pre><code>my-node-server/
+├── views/
+│   ├── index.html
+│   ├── about.html
+│   ├── 404.html
+├── server.js
+</code></pre>
+<h2 id="step-by-step-guide-1"><a class="header" href="#step-by-step-guide-1">Step-by-Step Guide</a></h2>
+<ol>
+<li>
+<p><strong>Create the Project Directory</strong></p>
+<p>Create a directory for your project:</p>
+<pre><code class="language-bash">mkdir my-node-server
+cd my-node-server
+</code></pre>
+</li>
+<li>
+<p><strong>Create HTML Files</strong></p>
+<p>Inside the <code>views</code> directory, create the following HTML files:</p>
+<ul>
+<li>
+<p><code>index.html</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Home&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to the Home Page&lt;/h1&gt;
+    &lt;p&gt;This is the home page of our Node.js server.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li>
+<p><code>about.html</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;About&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;About Us&lt;/h1&gt;
+    &lt;p&gt;This is the about page of our Node.js server.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li>
+<p><code>404.html</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;404 - Page Not Found&lt;/h1&gt;
+    &lt;p&gt;Oops! The page you are looking for does not exist.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Create the Server Script</strong></p>
+<p>Create a file named <code>server.js</code> in the root directory and add the following code:</p>
+<pre><code class="language-javascript">const http = require('http');
+const fs = require('fs');
+const path = require('path');
+
+const server = http.createServer((req, res) =&gt; {
+    res.setHeader('Content-Type', 'text/html');
+
+    let filePath = './views/';
+    let statusCode = 200;
+
+    switch (req.url) {
+        case '/':
+            filePath += 'index.html';
+            break;
+        case '/about':
+            filePath += 'about.html';
+            break;
+        case '/about-me':
+            statusCode = 301;
+            res.setHeader('Location', '/about');
+            res.end();
+            return;
+        default:
+            filePath += '404.html';
+            statusCode = 404;
+            break;
+    }
+
+    fs.readFile(path.resolve(filePath), (err, data) =&gt; {
+        if (err) {
+            console.error(err);
+            res.statusCode = 500;
+            res.end('Internal Server Error');
+        } else {
+            res.statusCode = statusCode;
+            res.end(data);
+        }
+    });
+});
+
+const PORT = 3000;
+const HOSTNAME = 'localhost';
+
+server.listen(PORT, HOSTNAME, () =&gt; {
+    console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
+});
+</code></pre>
+</li>
+<li>
+<p><strong>Run the Server</strong></p>
+<p>In the terminal, run the server using Node.js:</p>
+<pre><code class="language-bash">node server.js
+</code></pre>
+</li>
+<li>
+<p><strong>Test the Server</strong></p>
+<ul>
+<li>Open your browser and navigate to <code>http://localhost:3000/</code> to see the home page.</li>
+<li>Navigate to <code>http://localhost:3000/about</code> to see the about page.</li>
+<li>Navigate to <code>http://localhost:3000/about-me</code> to see the redirect in action.</li>
+<li>Navigate to any non-existent route, such as <code>http://localhost:3000/nonexistent</code>, to see the 404 page.</li>
+</ul>
+</li>
+</ol>
+<h2 id="explanation-1"><a class="header" href="#explanation-1">Explanation</a></h2>
+<ul>
+<li><strong>Server Creation</strong>: The server is created using <code>http.createServer()</code>. The callback function handles incoming requests.</li>
+<li><strong>Routing Logic</strong>: A <code>switch</code> statement is used to handle different routes. The appropriate HTML file path is set based on the requested URL.</li>
+<li><strong>Reading and Sending Files</strong>: The <code>fs.readFile</code> method reads the HTML files. If an error occurs, a 500 status code and error message are sent. Otherwise, the content of the HTML file is sent with the appropriate status code.</li>
+<li><strong>Redirects</strong>: A special case for <code>/about-me</code> is handled by setting a 301 status code and the <code>Location</code> header to redirect the request to <code>/about</code>.</li>
+</ul>
+<p>This example illustrates how to handle basic routing, serve HTML files, and manage redirects in a Node.js server.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs---npm"><a class="header" href="#nodejs---npm">Node.js - NPM</a></h1>
+<p>In this tutorial, we will delve into NPM (Node Package Manager), a vital tool for Node.js developers. NPM allows us to install, update, and manage packages that are not part of the Node.js core. This tutorial will guide you through the process of using NPM, installing packages globally and locally, and understanding the <code>package.json</code> file.</p>
+<h2 id="introduction-to-npm"><a class="header" href="#introduction-to-npm">Introduction to NPM</a></h2>
+<p>NPM is a package manager for Node.js, installed automatically when you install Node.js. It allows you to manage dependencies for your Node.js projects and facilitates the installation of third-party packages.</p>
+<h3 id="installing-packages-globally"><a class="header" href="#installing-packages-globally">Installing Packages Globally</a></h3>
+<p>Global packages can be used across multiple projects on your computer. One such package is <code>nodemon</code>, which aids in development by automatically restarting the server when code changes are detected.</p>
+<pre><code class="language-bash"># Install nodemon globally
+npm install -g nodemon
+</code></pre>
+<p>After installation, you can use <code>nodemon</code> instead of <code>node</code> to run your server, and it will automatically restart whenever you make changes to your code.</p>
+<pre><code class="language-bash"># Run server with nodemon
+nodemon server.js
+</code></pre>
+<h3 id="installing-packages-locally"><a class="header" href="#installing-packages-locally">Installing Packages Locally</a></h3>
+<p>Local packages are installed within the project directory and are project-specific. To manage local dependencies, you should create a <code>package.json</code> file in your project.</p>
+<h4 id="initializing-packagejson"><a class="header" href="#initializing-packagejson">Initializing <code>package.json</code></a></h4>
+<p>The <code>package.json</code> file is created using the <code>npm init</code> command, which prompts you to enter details about your project.</p>
+<pre><code class="language-bash"># Initialize package.json
+npm init
+</code></pre>
+<p>You will be asked a series of questions, such as the project name, version, description, entry point, and more. You can accept the default values by pressing Enter.</p>
+<h3 id="example-installing-lodash"><a class="header" href="#example-installing-lodash">Example: Installing Lodash</a></h3>
+<p>Lodash is a popular utility library that provides helpful functions for common programming tasks. To install Lodash locally in your project, you can use the following command:</p>
+<pre><code class="language-bash"># Install lodash locally
+npm install lodash
+</code></pre>
+<p>This command will add Lodash to your project's dependencies and create a <code>node_modules</code> folder where Lodash and its dependencies are stored. The <code>package.json</code> file will be updated to include Lodash in the <code>dependencies</code> section.</p>
+<pre><code class="language-json">{
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
+</code></pre>
+<h4 id="using-lodash-in-your-project"><a class="header" href="#using-lodash-in-your-project">Using Lodash in Your Project</a></h4>
+<p>To use Lodash in your Node.js project, require it at the top of your JavaScript file.</p>
+<pre><code class="language-javascript">// Require Lodash
+const _ = require('lodash');
+
+// Use Lodash to get a random number between 0 and 20
+const randomNum = _.random(0, 20);
+console.log(randomNum);
+</code></pre>
+<h3 id="understanding-package-lockjson"><a class="header" href="#understanding-package-lockjson">Understanding <code>package-lock.json</code></a></h3>
+<p>Alongside <code>package.json</code>, you will also see a <code>package-lock.json</code> file. This file locks the versions of installed packages and their dependencies, ensuring consistent installs across different environments. You do not need to edit this file manually.</p>
+<h3 id="sharing-projects-without-node_modules"><a class="header" href="#sharing-projects-without-node_modules">Sharing Projects Without <code>node_modules</code></a></h3>
+<p>When sharing your project, you should exclude the <code>node_modules</code> folder to avoid transferring unnecessary files. Instead, include the <code>package.json</code> and <code>package-lock.json</code> files. Anyone cloning your project can run <code>npm install</code> to install all required dependencies listed in <code>package.json</code>.</p>
+<pre><code class="language-bash"># Install all dependencies listed in package.json
+npm install
+</code></pre>
+<h3 id="example-creating-a-project-and-installing-dependencies"><a class="header" href="#example-creating-a-project-and-installing-dependencies">Example: Creating a Project and Installing Dependencies</a></h3>
+<ol>
+<li>
+<p><strong>Initialize the Project</strong></p>
+<pre><code class="language-bash">npm init -y
+</code></pre>
+<p>The <code>-y</code> flag accepts all default values.</p>
+</li>
+<li>
+<p><strong>Install Dependencies</strong></p>
+<pre><code class="language-bash">npm install lodash
+</code></pre>
+</li>
+<li>
+<p><strong>Use Lodash in Your Project</strong></p>
+<p>Create a <code>server.js</code> file:</p>
+<pre><code class="language-javascript">const _ = require('lodash');
+
+const greet = _.once(() =&gt; {
+  console.log('Hello');
+});
+
+greet(); // Logs: Hello
+greet(); // Does not log anything
+</code></pre>
+</li>
+<li>
+<p><strong>Run the Project</strong></p>
+<p>Use <code>nodemon</code> to run the project and observe live reloading:</p>
+<pre><code class="language-bash">nodemon server.js
+</code></pre>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-building-a-simple-server-with-express-and-using-lodash"><a class="header" href="#example-building-a-simple-server-with-express-and-using-lodash">Example: Building a Simple Server with Express and Using Lodash</a></h1>
+<p>In this example, we will build a simple Node.js server using Express and demonstrate the use of Lodash for utility functions.</p>
+<h2 id="step-1-initialize-the-project"><a class="header" href="#step-1-initialize-the-project">Step 1: Initialize the Project</a></h2>
+<p>First, create a new directory for your project and navigate into it. Then, initialize a new Node.js project.</p>
+<pre><code class="language-bash">mkdir my-node-project
+cd my-node-project
+npm init -y
+</code></pre>
+<p>This will create a <code>package.json</code> file with default values.</p>
+<h2 id="step-2-install-dependencies"><a class="header" href="#step-2-install-dependencies">Step 2: Install Dependencies</a></h2>
+<p>Next, install Express and Lodash as dependencies.</p>
+<pre><code class="language-bash">npm install express lodash
+</code></pre>
+<p>This will install both packages locally and add them to the <code>dependencies</code> section of your <code>package.json</code> file.</p>
+<h2 id="step-3-create-the-server"><a class="header" href="#step-3-create-the-server">Step 3: Create the Server</a></h2>
+<p>Create a file named <code>server.js</code> and add the following code:</p>
+<pre><code class="language-javascript">// server.js
+
+const express = require('express');
+const _ = require('lodash');
+
+const app = express();
+const port = 3000;
+
+// Sample data array
+const users = [
+  { id: 1, name: 'Alice', age: 25 },
+  { id: 2, name: 'Bob', age: 30 },
+  { id: 3, name: 'Charlie', age: 35 }
+];
+
+// Endpoint to get a random user
+app.get('/random-user', (req, res) =&gt; {
+  const randomUser = _.sample(users);
+  res.json(randomUser);
+});
+
+// Endpoint to get all users sorted by age
+app.get('/sorted-users', (req, res) =&gt; {
+  const sortedUsers = _.sortBy(users, ['age']);
+  res.json(sortedUsers);
+});
+
+app.listen(port, () =&gt; {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+</code></pre>
+<h2 id="step-4-run-the-server-with-nodemon"><a class="header" href="#step-4-run-the-server-with-nodemon">Step 4: Run the Server with Nodemon</a></h2>
+<p>To use <code>nodemon</code> for automatic server restarts, install it globally if you haven't already:</p>
+<pre><code class="language-bash">npm install -g nodemon
+</code></pre>
+<p>Then, run the server using <code>nodemon</code>:</p>
+<pre><code class="language-bash">nodemon server.js
+</code></pre>
+<h2 id="step-5-test-the-endpoints"><a class="header" href="#step-5-test-the-endpoints">Step 5: Test the Endpoints</a></h2>
+<p>Open your browser or a tool like Postman and test the endpoints:</p>
+<ul>
+<li>
+<p><strong>Random User Endpoint:</strong> <code>http://localhost:3000/random-user</code></p>
+<p>This should return a random user from the users array, e.g.,</p>
+<pre><code class="language-json">{
+  "id": 2,
+  "name": "Bob",
+  "age": 30
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Sorted Users Endpoint:</strong> <code>http://localhost:3000/sorted-users</code></p>
+<p>This should return the users sorted by age, e.g.,</p>
+<pre><code class="language-json">[
+  {
+    "id": 1,
+    "name": "Alice",
+    "age": 25
+  },
+  {
+    "id": 2,
+    "name": "Bob",
+    "age": 30
+  },
+  {
+    "id": 3,
+    "name": "Charlie",
+    "age": 35
+  }
+]
+</code></pre>
+</li>
+</ul>
+<h2 id="explanation-2"><a class="header" href="#explanation-2">Explanation</a></h2>
+<ol>
+<li>
+<p><strong>Initializing the Project:</strong> We start by initializing a new Node.js project with <code>npm init -y</code>, which creates a <code>package.json</code> file.</p>
+</li>
+<li>
+<p><strong>Installing Dependencies:</strong> We install Express for creating the server and Lodash for utility functions.</p>
+</li>
+<li>
+<p><strong>Creating the Server:</strong> In <code>server.js</code>, we set up a basic Express server with two endpoints:</p>
+<ul>
+<li><code>/random-user</code>: Uses Lodash's <code>sample</code> method to return a random user.</li>
+<li><code>/sorted-users</code>: Uses Lodash's <code>sortBy</code> method to return users sorted by age.</li>
+</ul>
+</li>
+<li>
+<p><strong>Running the Server with Nodemon:</strong> We use <code>nodemon</code> to run the server, which automatically restarts the server whenever we make changes to the code.</p>
+</li>
+</ol>
+<p>This example demonstrates how to set up a simple Node.js server using Express and integrate Lodash for additional functionality.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs---express-apps"><a class="header" href="#nodejs---express-apps">Node.js - Express Apps</a></h1>
+<h2 id="introduction-3"><a class="header" href="#introduction-3">Introduction</a></h2>
+<p>In this tutorial, we will delve into the creation of Express applications. Express is a minimalist web framework for Node.js that simplifies the process of building robust web applications and APIs. By using Express, we can manage routing, requests, server-side logic, and responses more efficiently and elegantly. While it is possible to achieve the same outcomes with raw Node.js, Express streamlines the process, resulting in cleaner, more maintainable code.</p>
+<h2 id="installing-express"><a class="header" href="#installing-express">Installing Express</a></h2>
+<p>Before we begin, ensure you have Node.js and npm installed on your system. To install Express, open your terminal and navigate to your project directory. Run the following command:</p>
+<pre><code class="language-bash">npm install express
+</code></pre>
+<p>This will add Express to your project dependencies. If you are using an older version of npm, you may need to use the <code>--save</code> flag to ensure it is saved to your dependencies list.</p>
+<pre><code class="language-bash">npm install express --save
+</code></pre>
+<h2 id="creating-an-express-application"><a class="header" href="#creating-an-express-application">Creating an Express Application</a></h2>
+<p>To start, create a new file named <code>app.js</code>. We will retain the <code>server.js</code> file to compare our Express code with raw Node.js code later. Inside <code>app.js</code>, begin by requiring Express and setting up an instance of an Express application.</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+</code></pre>
+<p>Next, we need to set up the application to listen for incoming requests on a specific port. For this tutorial, we will use port 3000.</p>
+<pre><code class="language-javascript">app.listen(3000, () =&gt; {
+  console.log('Server is running on http://localhost:3000');
+});
+</code></pre>
+<h2 id="handling-routes"><a class="header" href="#handling-routes">Handling Routes</a></h2>
+<h2 id="responding-to-get-requests"><a class="header" href="#responding-to-get-requests">Responding to GET Requests</a></h2>
+<p>To handle GET requests, we use the <code>app.get()</code> method. This method takes two arguments: the URL path and a callback function that handles the request and response.</p>
+<pre><code class="language-javascript">app.get('/', (req, res) =&gt; {
+  res.send('&lt;p&gt;Homepage&lt;/p&gt;');
+});
+</code></pre>
+<p>In this example, when a GET request is made to the root URL (<code>/</code>), the server responds with a simple HTML message.</p>
+<h2 id="handling-multiple-routes"><a class="header" href="#handling-multiple-routes">Handling Multiple Routes</a></h2>
+<p>We can define multiple routes by chaining <code>app.get()</code> calls. For example, to handle requests to both the root URL and an "About" page:</p>
+<pre><code class="language-javascript">app.get('/', (req, res) =&gt; {
+  res.send('&lt;p&gt;Homepage&lt;/p&gt;');
+});
+
+app.get('/about', (req, res) =&gt; {
+  res.send('&lt;p&gt;About Page&lt;/p&gt;');
+});
+</code></pre>
+<h2 id="sending-html-files"><a class="header" href="#sending-html-files">Sending HTML Files</a></h2>
+<p>Instead of sending strings of HTML, we can send HTML files. First, ensure you have the required HTML files in your project directory. For instance, create <code>index.html</code> and <code>about.html</code> inside a <code>views</code> folder.</p>
+<pre><code class="language-javascript">app.get('/', (req, res) =&gt; {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
+app.get('/about', (req, res) =&gt; {
+  res.sendFile(__dirname + '/views/about.html');
+});
+</code></pre>
+<p>In the above example, <code>__dirname</code> refers to the directory of the currently executing script, ensuring that the paths to the HTML files are correct.</p>
+<h2 id="redirecting-requests-1"><a class="header" href="#redirecting-requests-1">Redirecting Requests</a></h2>
+<p>To redirect requests, use the <code>res.redirect()</code> method. For instance, to redirect requests from <code>/about-us</code> to <code>/about</code>:</p>
+<pre><code class="language-javascript">app.get('/about-us', (req, res) =&gt; {
+  res.redirect('/about');
+});
+</code></pre>
+<h2 id="handling-404-errors"><a class="header" href="#handling-404-errors">Handling 404 Errors</a></h2>
+<p>To handle 404 errors (i.e., requests to unknown routes), use the <code>app.use()</code> method. This method defines middleware that executes if no previous route handlers match the request.</p>
+<pre><code class="language-javascript">app.use((req, res) =&gt; {
+  res.status(404).sendFile(__dirname + '/views/404.html');
+});
+</code></pre>
+<p>The <code>app.use()</code> method without a path argument catches all requests that fall through the previous route handlers. We also set the status code to 404 to indicate a "Not Found" error.</p>
+<h2 id="complete-example"><a class="header" href="#complete-example">Complete Example</a></h2>
+<p>Here is a complete example of an Express application that handles multiple routes, redirects, and 404 errors:</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+
+// Define routes
+app.get('/', (req, res) =&gt; {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
+app.get('/about', (req, res) =&gt; {
+  res.sendFile(__dirname + '/views/about.html');
+});
+
+app.get('/about-us', (req, res) =&gt; {
+  res.redirect('/about');
+});
+
+// Handle 404 errors
+app.use((req, res) =&gt; {
+  res.status(404).sendFile(__dirname + '/views/404.html');
+});
+
+// Start the server
+app.listen(3000, () =&gt; {
+  console.log('Server is running on http://localhost:3000');
+});
+</code></pre>
+<p>In this example, we define three routes: the root URL, the "About" page, and a redirect from <code>/about-us</code> to <code>/about</code>. We also handle 404 errors by serving a custom 404 page.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="examples-express-apps"><a class="header" href="#examples-express-apps">Examples: Express Apps</a></h1>
+<h2 id="code"><a class="header" href="#code">Code</a></h2>
+<pre><code class="language-javascript">// Import the Express module
+const express = require('express');
+
+// Create an instance of an Express application
+const app = express();
+
+// Define the port number
+const PORT = 3000;
+
+// Route for the homepage
+app.get('/', (req, res) =&gt; {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
+// Route for the about page
+app.get('/about', (req, res) =&gt; {
+  res.sendFile(__dirname + '/views/about.html');
+});
+
+// Route for redirecting /about-us to /about
+app.get('/about-us', (req, res) =&gt; {
+  res.redirect('/about');
+});
+
+// Handle 404 errors
+app.use((req, res) =&gt; {
+  res.status(404).sendFile(__dirname + '/views/404.html');
+});
+
+// Start the server and listen on the defined port
+app.listen(PORT, () =&gt; {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+</code></pre>
+<h2 id="detailed-explanation-1"><a class="header" href="#detailed-explanation-1">Detailed Explanation</a></h2>
+<ol>
+<li>
+<p><strong>Import the Express Module</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+</code></pre>
+<p>This line imports the Express module, which is required to create an Express application.</p>
+</li>
+<li>
+<p><strong>Create an Instance of an Express Application</strong></p>
+<pre><code class="language-javascript">const app = express();
+</code></pre>
+<p>This line creates an instance of an Express application, which will be used to define routes and middleware.</p>
+</li>
+<li>
+<p><strong>Define the Port Number</strong></p>
+<pre><code class="language-javascript">const PORT = 3000;
+</code></pre>
+<p>The server will listen on port 3000. You can change this to any available port number.</p>
+</li>
+<li>
+<p><strong>Route for the Homepage</strong></p>
+<pre><code class="language-javascript">app.get('/', (req, res) =&gt; {
+  res.sendFile(__dirname + '/views/index.html');
+});
+</code></pre>
+<p>This route handles GET requests to the root URL (<code>/</code>). It sends the <code>index.html</code> file located in the <code>views</code> folder.</p>
+</li>
+<li>
+<p><strong>Route for the About Page</strong></p>
+<pre><code class="language-javascript">app.get('/about', (req, res) =&gt; {
+  res.sendFile(__dirname + '/views/about.html');
+});
+</code></pre>
+<p>This route handles GET requests to the <code>/about</code> URL. It sends the <code>about.html</code> file located in the <code>views</code> folder.</p>
+</li>
+<li>
+<p><strong>Route for Redirecting <code>/about-us</code> to <code>/about</code></strong></p>
+<pre><code class="language-javascript">app.get('/about-us', (req, res) =&gt; {
+  res.redirect('/about');
+});
+</code></pre>
+<p>This route handles GET requests to the <code>/about-us</code> URL. It redirects the request to the <code>/about</code> URL.</p>
+</li>
+<li>
+<p><strong>Handle 404 Errors</strong></p>
+<pre><code class="language-javascript">app.use((req, res) =&gt; {
+  res.status(404).sendFile(__dirname + '/views/404.html');
+});
+</code></pre>
+<p>This middleware handles all requests that do not match any defined routes. It sends the <code>404.html</code> file located in the <code>views</code> folder and sets the response status to 404.</p>
+</li>
+<li>
+<p><strong>Start the Server</strong></p>
+<pre><code class="language-javascript">app.listen(PORT, () =&gt; {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+</code></pre>
+<p>This line starts the server and listens for incoming requests on the defined port. It logs a message to the console when the server is running.</p>
+</li>
+</ol>
+<h2 id="required-html-files"><a class="header" href="#required-html-files">Required HTML Files</a></h2>
+<p>Create the following HTML files in a folder named <code>views</code>:</p>
+<h3 id="indexhtml"><a class="header" href="#indexhtml"><code>index.html</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Homepage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Homepage&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="/"&gt;Home&lt;/a&gt;
+    &lt;a href="/about"&gt;About&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="abouthtml"><a class="header" href="#abouthtml"><code>about.html</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;About&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;About Page&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="/"&gt;Home&lt;/a&gt;
+    &lt;a href="/about"&gt;About&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="404html"><a class="header" href="#404html"><code>404.html</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;404 - Page Not Found&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="/"&gt;Home&lt;/a&gt;
+    &lt;a href="/about"&gt;About&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="running-the-application"><a class="header" href="#running-the-application">Running the Application</a></h2>
+<ol>
+<li>
+<p>Ensure you have installed Express by running:</p>
+<pre><code class="language-bash">npm install express
+</code></pre>
+</li>
+<li>
+<p>Save the JavaScript code in a file named <code>app.js</code>.</p>
+</li>
+<li>
+<p>Create the <code>views</code> folder and add the HTML files (<code>index.html</code>, <code>about.html</code>, and <code>404.html</code>).</p>
+</li>
+<li>
+<p>Start the application by running:</p>
+<pre><code class="language-bash">node app.js
+</code></pre>
+</li>
+<li>
+<p>Open your browser and navigate to <code>http://localhost:3000</code> to see the homepage. Navigate to <code>http://localhost:3000/about</code> to see the about page. Test the redirect by navigating to <code>http://localhost:3000/about-us</code>. Finally, test the 404 page by navigating to a non-existent URL such as <code>http://localhost:3000/unknown</code>.</p>
+</li>
+</ol>
+<p>This example demonstrates the fundamental concepts of routing, redirection, and error handling in an Express application. By following this structure, you can build more complex and scalable web applications with ease.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs---view-engines"><a class="header" href="#nodejs---view-engines">Node.js - View Engines</a></h1>
+<p>In this tutorial, we will explore how to use a view engine with a Node.js and Express application to dynamically generate HTML pages. By leveraging view engines, we can inject dynamic data into our HTML templates, making our web applications more interactive and responsive to user data and database content. We will specifically focus on the EJS (Embedded JavaScript) view engine due to its simplicity and powerful features.</p>
+<h2 id="step-1-install-ejs"><a class="header" href="#step-1-install-ejs">Step 1: Install EJS</a></h2>
+<p>First, we need to install the EJS package. Open your terminal and navigate to your project directory. Run the following command:</p>
+<pre><code class="language-bash">npm install ejs
+</code></pre>
+<p>This will add EJS to your project's dependencies in <code>package.json</code>.</p>
+<h2 id="step-2-register-the-view-engine"><a class="header" href="#step-2-register-the-view-engine">Step 2: Register the View Engine</a></h2>
+<p>Next, we need to configure our Express application to use EJS as the view engine. In your main application file (e.g., <code>app.js</code>), add the following code after initializing your Express app:</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+
+// Register the view engine
+app.set('view engine', 'ejs');
+</code></pre>
+<p>By setting the view engine to EJS, Express will automatically look for <code>.ejs</code> files in a <code>views</code> directory within your project.</p>
+<h2 id="step-3-create-the-views-directory"><a class="header" href="#step-3-create-the-views-directory">Step 3: Create the Views Directory</a></h2>
+<p>Create a directory named <code>views</code> in your project's root directory. This is where we will place our EJS templates.</p>
+<pre><code class="language-bash">mkdir views
+</code></pre>
+<h2 id="creating-ejs-templates"><a class="header" href="#creating-ejs-templates">Creating EJS Templates</a></h2>
+<h2 id="step-4-create-an-index-view"><a class="header" href="#step-4-create-an-index-view">Step 4: Create an Index View</a></h2>
+<p>Create a new file named <code>index.ejs</code> in the <code>views</code> directory. This will be our main template file.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+        &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="content"&gt;
+        &lt;h1&gt;Welcome to My App&lt;/h1&gt;
+        &lt;p&gt;This is a Node.js application using EJS.&lt;/p&gt;
+        &lt;div class="blogs"&gt;
+            &lt;h2&gt;All Blogs&lt;/h2&gt;
+            &lt;% if (blogs.length &gt; 0) { %&gt;
+                &lt;% blogs.forEach(blog =&gt; { %&gt;
+                    &lt;div class="blog"&gt;
+                        &lt;h3&gt;&lt;%= blog.title %&gt;&lt;/h3&gt;
+                        &lt;p&gt;&lt;%= blog.snippet %&gt;&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;% }) %&gt;
+            &lt;% } else { %&gt;
+                &lt;p&gt;There are no blogs to display.&lt;/p&gt;
+            &lt;% } %&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>This template includes placeholders for dynamic data using EJS tags (<code>&lt;%= %&gt;</code> and <code>&lt;% %&gt;</code>).</p>
+<h2 id="step-5-render-the-index-view"><a class="header" href="#step-5-render-the-index-view">Step 5: Render the Index View</a></h2>
+<p>In your main application file, create a route to render the <code>index.ejs</code> template and pass dynamic data to it:</p>
+<pre><code class="language-javascript">app.get('/', (req, res) =&gt; {
+    const blogs = [
+        { title: 'First Blog', snippet: 'This is the first blog snippet.' },
+        { title: 'Second Blog', snippet: 'This is the second blog snippet.' },
+        { title: 'Third Blog', snippet: 'This is the third blog snippet.' }
+    ];
+    res.render('index', { title: 'Home', blogs });
+});
+</code></pre>
+<p>This route handler fetches blog data and renders the <code>index.ejs</code> template, injecting the <code>title</code> and <code>blogs</code> variables.</p>
+<h2 id="creating-additional-views"><a class="header" href="#creating-additional-views">Creating Additional Views</a></h2>
+<h2 id="step-6-create-about-and-404-views"><a class="header" href="#step-6-create-about-and-404-views">Step 6: Create About and 404 Views</a></h2>
+<p>Create additional EJS templates for the "About" page and a custom 404 error page.</p>
+<h3 id="viewsaboutejs"><a class="header" href="#viewsaboutejs"><code>views/about.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+        &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="content"&gt;
+        &lt;h1&gt;About Us&lt;/h1&gt;
+        &lt;p&gt;Learn more about our application and team.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="views404ejs"><a class="header" href="#views404ejs"><code>views/404.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+        &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="content"&gt;
+        &lt;h1&gt;Page Not Found&lt;/h1&gt;
+        &lt;p&gt;The page you are looking for does not exist.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="step-7-render-additional-views"><a class="header" href="#step-7-render-additional-views">Step 7: Render Additional Views</a></h2>
+<p>Add route handlers for the "About" page and the 404 error page:</p>
+<pre><code class="language-javascript">app.get('/about', (req, res) =&gt; {
+    res.render('about', { title: 'About' });
+});
+
+// 404 page
+app.use((req, res) =&gt; {
+    res.status(404).render('404', { title: '404' });
+});
+</code></pre>
+<h2 id="step-8-create-a-form-view-for-new-blogs"><a class="header" href="#step-8-create-a-form-view-for-new-blogs">Step 8: Create a Form View for New Blogs</a></h2>
+<p>Create a new EJS template for creating a new blog:</p>
+<h3 id="viewscreateejs"><a class="header" href="#viewscreateejs"><code>views/create.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+        &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="content"&gt;
+        &lt;h1&gt;Create a New Blog&lt;/h1&gt;
+        &lt;form action="/blogs" method="POST"&gt;
+            &lt;label for="title"&gt;Blog Title:&lt;/label&gt;
+            &lt;input type="text" id="title" name="title" required&gt;
+            &lt;label for="snippet"&gt;Blog Snippet:&lt;/label&gt;
+            &lt;input type="text" id="snippet" name="snippet" required&gt;
+            &lt;label for="body"&gt;Blog Body:&lt;/label&gt;
+            &lt;textarea id="body" name="body" required&gt;&lt;/textarea&gt;
+            &lt;button type="submit"&gt;Submit&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Add a route handler to render this view:</p>
+<pre><code class="language-javascript">app.get('/blogs/create', (req, res) =&gt; {
+    res.render('create', { title: 'Create a New Blog' });
+});
+</code></pre>
+<h2 id="using-partials"><a class="header" href="#using-partials">Using Partials</a></h2>
+<p>To avoid redundancy in our templates, we can use partials to reuse common sections like the header, navigation, and footer.</p>
+<h2 id="step-9-create-partials-directory-and-files"><a class="header" href="#step-9-create-partials-directory-and-files">Step 9: Create Partials Directory and Files</a></h2>
+<p>Create a directory named <code>partials</code> within the <code>views</code> directory. Then, create three files: <code>header.ejs</code>, <code>nav.ejs</code>, and <code>footer.ejs</code>.</p>
+<pre><code class="language-bash">mkdir views/partials
+touch views/partials/header.ejs views/partials/nav.ejs views/partials/footer.ejs
+</code></pre>
+<h3 id="viewspartialsheaderejs"><a class="header" href="#viewspartialsheaderejs"><code>views/partials/header.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+</code></pre>
+<h3 id="viewspartialsnavejs"><a class="header" href="#viewspartialsnavejs"><code>views/partials/nav.ejs</code></a></h3>
+<pre><code class="language-html">&lt;nav&gt;
+    &lt;a href="/"&gt;Home&lt;/a&gt;
+    &lt;a href="/about"&gt;About&lt;/a&gt;
+    &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+<h3 id="viewspartialsfooterejs"><a class="header" href="#viewspartialsfooterejs"><code>views/partials/footer.ejs</code></a></h3>
+<pre><code class="language-html">    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="step-10-include-partials-in-templates"><a class="header" href="#step-10-include-partials-in-templates">Step 10: Include Partials in Templates</a></h2>
+<p>Update the existing templates to include these partials using the EJS <code>include</code> function.</p>
+<h3 id="viewsindexejs"><a class="header" href="#viewsindexejs"><code>views/index.ejs</code></a></h3>
+<pre><code class="language-html">&lt;%- include('partials/header') %&gt;
+&lt;%- include('partials/nav') %&gt;
+&lt;div class="content"&gt;
+    &lt;h1&gt;Welcome to My App&lt;/h1&gt;
+    &lt;p&gt;This is a Node.js application using EJS.&lt;/p&gt;
+    &lt;div class="blogs"&gt;
+        &lt;h2&gt;All Blogs&lt;/h2&gt;
+        &lt;% if (blogs.length &gt; 0) { %&gt;
+            &lt;% blogs.forEach(blog =&gt; { %&gt;
+                &lt;div class="
+
+blog"&gt;
+                    &lt;h3&gt;&lt;%= blog.title %&gt;&lt;/h3&gt;
+                    &lt;p&gt;&lt;%= blog.snippet %&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;% }) %&gt;
+        &lt;% } else { %&gt;
+            &lt;p&gt;There are no blogs to display.&lt;/p&gt;
+        &lt;% } %&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;%- include('partials/footer') %&gt;
+</code></pre>
+<h3 id="viewsaboutejs-views404ejs-viewscreateejs"><a class="header" href="#viewsaboutejs-views404ejs-viewscreateejs"><code>views/about.ejs</code>, <code>views/404.ejs</code>, <code>views/create.ejs</code></a></h3>
+<p>Update similarly by including the <code>header</code>, <code>nav</code>, and <code>footer</code> partials.</p>
+<h2 id="adding-css"><a class="header" href="#adding-css">Adding CSS</a></h2>
+<p>For simplicity, we can add CSS directly to the <code>header.ejs</code> partial. However, in a real application, you would typically serve static CSS files.</p>
+<h3 id="viewspartialsheaderejs-1"><a class="header" href="#viewspartialsheaderejs-1"><code>views/partials/header.ejs</code></a></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav {
+            background: #333;
+            color: #fff;
+            padding: 1em;
+        }
+        nav a {
+            color: #fff;
+            margin-right: 1em;
+            text-decoration: none;
+        }
+        .content {
+            padding: 1em;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-view-engines"><a class="header" href="#example-view-engines">Example: View Engines</a></h1>
+<h2 id="project-setup"><a class="header" href="#project-setup">Project Setup</a></h2>
+<ol>
+<li>
+<p><strong>Initialize a new Node.js project:</strong></p>
+<pre><code class="language-bash">mkdir node-ejs-example
+cd node-ejs-example
+npm init -y
+</code></pre>
+</li>
+<li>
+<p><strong>Install the required packages:</strong></p>
+<pre><code class="language-bash">npm install express ejs
+</code></pre>
+</li>
+</ol>
+<h2 id="create-project-structure"><a class="header" href="#create-project-structure">Create Project Structure</a></h2>
+<p>Create the following directory structure:</p>
+<pre><code>node-ejs-example/
+│
+├── views/
+│   ├── partials/
+│   │   ├── header.ejs
+│   │   ├── nav.ejs
+│   │   └── footer.ejs
+│   ├── index.ejs
+│   ├── about.ejs
+│   ├── 404.ejs
+│   └── create.ejs
+│
+├── app.js
+└── package.json
+</code></pre>
+<h2 id="step-by-step-implementation"><a class="header" href="#step-by-step-implementation">Step-by-Step Implementation</a></h2>
+<h2 id="1-appjs---main-application-file"><a class="header" href="#1-appjs---main-application-file">1. <code>app.js</code> - Main Application File</a></h2>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+
+// Set the view engine to EJS
+app.set('view engine', 'ejs');
+
+// Middleware to parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded({ extended: true }));
+
+// Routes
+app.get('/', (req, res) =&gt; {
+    const blogs = [
+        { title: 'First Blog', snippet: 'This is the first blog snippet.' },
+        { title: 'Second Blog', snippet: 'This is the second blog snippet.' },
+        { title: 'Third Blog', snippet: 'This is the third blog snippet.' }
+    ];
+    res.render('index', { title: 'Home', blogs });
+});
+
+app.get('/about', (req, res) =&gt; {
+    res.render('about', { title: 'About' });
+});
+
+app.get('/blogs/create', (req, res) =&gt; {
+    res.render('create', { title: 'Create a New Blog' });
+});
+
+// 404 page
+app.use((req, res) =&gt; {
+    res.status(404).render('404', { title: '404' });
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =&gt; {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
+</code></pre>
+<h2 id="2-viewspartialsheaderejs"><a class="header" href="#2-viewspartialsheaderejs">2. <code>views/partials/header.ejs</code></a></h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;&lt;%= title %&gt; | My App&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav {
+            background: #333;
+            color: #fff;
+            padding: 1em;
+        }
+        nav a {
+            color: #fff;
+            margin-right: 1em;
+            text-decoration: none;
+        }
+        .content {
+            padding: 1em;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+</code></pre>
+<h2 id="3-viewspartialsnavejs"><a class="header" href="#3-viewspartialsnavejs">3. <code>views/partials/nav.ejs</code></a></h2>
+<pre><code class="language-html">&lt;nav&gt;
+    &lt;a href="/"&gt;Home&lt;/a&gt;
+    &lt;a href="/about"&gt;About&lt;/a&gt;
+    &lt;a href="/blogs/create"&gt;New Blog&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+<h2 id="4-viewspartialsfooterejs"><a class="header" href="#4-viewspartialsfooterejs">4. <code>views/partials/footer.ejs</code></a></h2>
+<pre><code class="language-html">&lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2023 My App&lt;/p&gt;
+&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="5-viewsindexejs"><a class="header" href="#5-viewsindexejs">5. <code>views/index.ejs</code></a></h2>
+<pre><code class="language-html">&lt;%- include('partials/header') %&gt;
+&lt;%- include('partials/nav') %&gt;
+&lt;div class="content"&gt;
+    &lt;h1&gt;Welcome to My App&lt;/h1&gt;
+    &lt;p&gt;This is a Node.js application using EJS.&lt;/p&gt;
+    &lt;div class="blogs"&gt;
+        &lt;h2&gt;All Blogs&lt;/h2&gt;
+        &lt;% if (blogs.length &gt; 0) { %&gt;
+            &lt;% blogs.forEach(blog =&gt; { %&gt;
+                &lt;div class="blog"&gt;
+                    &lt;h3&gt;&lt;%= blog.title %&gt;&lt;/h3&gt;
+                    &lt;p&gt;&lt;%= blog.snippet %&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;% }) %&gt;
+        &lt;% } else { %&gt;
+            &lt;p&gt;There are no blogs to display.&lt;/p&gt;
+        &lt;% } %&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;%- include('partials/footer') %&gt;
+</code></pre>
+<h2 id="6-viewsaboutejs"><a class="header" href="#6-viewsaboutejs">6. <code>views/about.ejs</code></a></h2>
+<pre><code class="language-html">&lt;%- include('partials/header') %&gt;
+&lt;%- include('partials/nav') %&gt;
+&lt;div class="content"&gt;
+    &lt;h1&gt;About Us&lt;/h1&gt;
+    &lt;p&gt;Learn more about our application and team.&lt;/p&gt;
+&lt;/div&gt;
+&lt;%- include('partials/footer') %&gt;
+</code></pre>
+<h2 id="7-views404ejs"><a class="header" href="#7-views404ejs">7. <code>views/404.ejs</code></a></h2>
+<pre><code class="language-html">&lt;%- include('partials/header') %&gt;
+&lt;%- include('partials/nav') %&gt;
+&lt;div class="content"&gt;
+    &lt;h1&gt;Page Not Found&lt;/h1&gt;
+    &lt;p&gt;The page you are looking for does not exist.&lt;/p&gt;
+&lt;/div&gt;
+&lt;%- include('partials/footer') %&gt;
+</code></pre>
+<h2 id="8-viewscreateejs"><a class="header" href="#8-viewscreateejs">8. <code>views/create.ejs</code></a></h2>
+<pre><code class="language-html">&lt;%- include('partials/header') %&gt;
+&lt;%- include('partials/nav') %&gt;
+&lt;div class="content"&gt;
+    &lt;h1&gt;Create a New Blog&lt;/h1&gt;
+    &lt;form action="/blogs" method="POST"&gt;
+        &lt;label for="title"&gt;Blog Title:&lt;/label&gt;
+        &lt;input type="text" id="title" name="title" required&gt;
+        &lt;label for="snippet"&gt;Blog Snippet:&lt;/label&gt;
+        &lt;input type="text" id="snippet" name="snippet" required&gt;
+        &lt;label for="body"&gt;Blog Body:&lt;/label&gt;
+        &lt;textarea id="body" name="body" required&gt;&lt;/textarea&gt;
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;%- include('partials/footer') %&gt;
+</code></pre>
+<h2 id="running-the-application-1"><a class="header" href="#running-the-application-1">Running the Application</a></h2>
+<ol>
+<li>
+<p><strong>Start the application:</strong></p>
+<pre><code class="language-bash">node app.js
+</code></pre>
+</li>
+<li>
+<p><strong>Open your browser and navigate to:</strong></p>
+<pre><code>http://localhost:3000
+</code></pre>
+</li>
+</ol>
+<p>You should see the home page with a list of blogs. Navigate to <code>/about</code> and <code>/blogs/create</code> to see the respective pages. Try visiting a non-existent URL to see the custom 404 page.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs---middleware"><a class="header" href="#nodejs---middleware">Node.js - Middleware</a></h1>
+<p>In this tutorial, we will explore the concept of middleware in Express.js, a popular web application framework for Node.js. Middleware is a fundamental aspect of Express.js and understanding it is crucial for building robust and scalable applications.</p>
+<h2 id="what-is-middleware"><a class="header" href="#what-is-middleware">What is Middleware?</a></h2>
+<p>Middleware refers to any function that runs on the server between receiving a request and sending a response. These functions can perform various tasks such as logging, authentication, data parsing, and error handling. In Express.js, middleware functions have access to the request and response objects, and they can modify them as needed.</p>
+<h2 id="using-middleware-in-expressjs"><a class="header" href="#using-middleware-in-expressjs">Using Middleware in Express.js</a></h2>
+<p>The <code>app.use()</code> method is commonly used to apply middleware to an Express.js application. Middleware functions can be applied globally to all routes or specifically to certain routes.</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+
+// Example of a simple middleware function
+app.use((req, res, next) =&gt; {
+    console.log('Middleware function executed');
+    next(); // Pass control to the next middleware function
+});
+
+app.get('/', (req, res) =&gt; {
+    res.send('Home Page');
+});
+
+app.get('/about', (req, res) =&gt; {
+    res.send('About Page');
+});
+
+app.listen(3000, () =&gt; {
+    console.log('Server is running on port 3000');
+});
+</code></pre>
+<p>In the example above, the middleware function logs a message to the console for every incoming request before passing control to the next middleware function or route handler using the <code>next()</code> function.</p>
+<h2 id="middleware-execution-order"><a class="header" href="#middleware-execution-order">Middleware Execution Order</a></h2>
+<p>Middleware functions are executed in the order they are defined in the code. This sequential execution is crucial because it allows you to control the flow of request handling and ensure that necessary operations are performed before sending a response.</p>
+<pre><code class="language-javascript">app.use((req, res, next) =&gt; {
+    console.log('First middleware');
+    next();
+});
+
+app.use((req, res, next) =&gt; {
+    console.log('Second middleware');
+    next();
+});
+
+app.get('/', (req, res) =&gt; {
+    res.send('Home Page');
+});
+</code></pre>
+<p>When a request is made to the root route (<code>/</code>), the console will log:</p>
+<pre><code>First middleware
+Second middleware
+</code></pre>
+<h2 id="creating-custom-middleware"><a class="header" href="#creating-custom-middleware">Creating Custom Middleware</a></h2>
+<p>Custom middleware functions can perform specific tasks, such as logging request details or handling errors.</p>
+<h3 id="logging-middleware"><a class="header" href="#logging-middleware">Logging Middleware</a></h3>
+<pre><code class="language-javascript">app.use((req, res, next) =&gt; {
+    console.log(`New request to: ${req.url}`);
+    next();
+});
+</code></pre>
+<h3 id="error-handling-middleware"><a class="header" href="#error-handling-middleware">Error Handling Middleware</a></h3>
+<p>Error handling middleware is defined with four parameters: <code>err</code>, <code>req</code>, <code>res</code>, and <code>next</code>.</p>
+<pre><code class="language-javascript">app.use((err, req, res, next) =&gt; {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
+</code></pre>
+<h2 id="built-in-middleware"><a class="header" href="#built-in-middleware">Built-in Middleware</a></h2>
+<p>Express.js includes several built-in middleware functions for common tasks.</p>
+<h3 id="static-middleware"><a class="header" href="#static-middleware">Static Middleware</a></h3>
+<p>The <code>express.static</code> middleware serves static files such as CSS, JavaScript, and images.</p>
+<pre><code class="language-javascript">app.use(express.static('public'));
+</code></pre>
+<p>In the example above, files in the <code>public</code> directory are served as static files. For instance, a file located at <code>public/styles.css</code> would be accessible at <code>http://localhost:3000/styles.css</code>.</p>
+<h2 id="third-party-middleware"><a class="header" href="#third-party-middleware">Third-Party Middleware</a></h2>
+<p>There are many third-party middleware libraries available for Express.js. One popular example is <code>morgan</code>, a HTTP request logger middleware.</p>
+<h3 id="installing-morgan"><a class="header" href="#installing-morgan">Installing Morgan</a></h3>
+<pre><code class="language-bash">npm install morgan
+</code></pre>
+<h3 id="using-morgan"><a class="header" href="#using-morgan">Using Morgan</a></h3>
+<pre><code class="language-javascript">const morgan = require('morgan');
+app.use(morgan('dev'));
+</code></pre>
+<p>The <code>dev</code> option configures Morgan to log requests in a concise format.</p>
+<h2 id="example-comprehensive-middleware-usage"><a class="header" href="#example-comprehensive-middleware-usage">Example: Comprehensive Middleware Usage</a></h2>
+<p>Let's create a comprehensive example that uses custom middleware, built-in middleware, and third-party middleware.</p>
+<pre><code class="language-javascript">const express = require('express');
+const morgan = require('morgan');
+const app = express();
+
+// Middleware for logging requests
+app.use(morgan('dev'));
+
+// Custom middleware for logging request details
+app.use((req, res, next) =&gt; {
+    console.log(`Request Details - Method: ${req.method}, URL: ${req.url}`);
+    next();
+});
+
+// Middleware for serving static files
+app.use(express.static('public'));
+
+// Route handlers
+app.get('/', (req, res) =&gt; {
+    res.send('Home Page');
+});
+
+app.get('/about', (req, res) =&gt; {
+    res.send('About Page');
+});
+
+// Error handling middleware
+app.use((err, req, res, next) =&gt; {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
+
+app.listen(3000, () =&gt; {
+    console.log('Server is running on port 3000');
+});
+</code></pre>
+<p>In this example:</p>
+<ul>
+<li>Morgan logs request details.</li>
+<li>A custom middleware function logs additional request details.</li>
+<li>Static files are served from the <code>public</code> directory.</li>
+<li>Error handling middleware catches and handles errors.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-comprehensive-middleware-usage-in-an-expressjs-application"><a class="header" href="#example-comprehensive-middleware-usage-in-an-expressjs-application">Example: Comprehensive Middleware Usage in an Express.js Application</a></h1>
+<h2 id="step-1-setting-up-the-project-1"><a class="header" href="#step-1-setting-up-the-project-1">Step 1: Setting Up the Project</a></h2>
+<p>First, create a new directory for your project and initialize a new Node.js project.</p>
+<pre><code class="language-bash">mkdir express-middleware-example
+cd express-middleware-example
+npm init -y
+</code></pre>
+<h2 id="step-2-installing-required-packages"><a class="header" href="#step-2-installing-required-packages">Step 2: Installing Required Packages</a></h2>
+<p>Install Express.js and Morgan (a third-party middleware for logging HTTP requests).</p>
+<pre><code class="language-bash">npm install express morgan
+</code></pre>
+<h2 id="step-3-creating-the-server"><a class="header" href="#step-3-creating-the-server">Step 3: Creating the Server</a></h2>
+<p>Create a file named <code>server.js</code> and add the following code to set up the Express.js server and demonstrate middleware usage.</p>
+<pre><code class="language-javascript">const express = require('express');
+const morgan = require('morgan');
+const app = express();
+const port = 3000;
+
+// Third-party middleware for logging requests
+app.use(morgan('dev'));
+
+// Custom middleware for logging request details
+app.use((req, res, next) =&gt; {
+    console.log(`Request Details - Method: ${req.method}, URL: ${req.url}`);
+    next();
+});
+
+// Built-in middleware for serving static files
+app.use(express.static('public'));
+
+// Route handlers
+app.get('/', (req, res) =&gt; {
+    res.send('Home Page');
+});
+
+app.get('/about', (req, res) =&gt; {
+    res.send('About Page');
+});
+
+// Error handling middleware
+app.use((err, req, res, next) =&gt; {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
+
+// 404 handler middleware
+app.use((req, res) =&gt; {
+    res.status(404).send('Page not found');
+});
+
+app.listen(port, () =&gt; {
+    console.log(`Server is running on port ${port}`);
+});
+</code></pre>
+<h2 id="step-4-adding-static-files"><a class="header" href="#step-4-adding-static-files">Step 4: Adding Static Files</a></h2>
+<p>Create a directory named <code>public</code> in the root of your project. Inside this directory, create a file named <code>styles.css</code> with the following content:</p>
+<pre><code class="language-css">body {
+    background-color: lightblue;
+    font-family: Arial, sans-serif;
+}
+</code></pre>
+<h2 id="step-5-testing-the-application"><a class="header" href="#step-5-testing-the-application">Step 5: Testing the Application</a></h2>
+<p>To run the server, use the following command:</p>
+<pre><code class="language-bash">node server.js
+</code></pre>
+<p>Open a web browser and navigate to <code>http://localhost:3000/</code>. You should see the "Home Page" message. The console should log request details for each request made to the server.</p>
+<p>If you navigate to <code>http://localhost:3000/about</code>, you should see the "About Page" message. Additionally, if you navigate to <code>http://localhost:3000/styles.css</code>, you should see the CSS content.</p>
+<h2 id="step-6-demonstrating-middleware-flow"><a class="header" href="#step-6-demonstrating-middleware-flow">Step 6: Demonstrating Middleware Flow</a></h2>
+<p>Modify the <code>server.js</code> file to add more custom middleware and demonstrate the flow of middleware execution.</p>
+<pre><code class="language-javascript">// Additional custom middleware
+app.use((req, res, next) =&gt; {
+    console.log('First custom middleware executed');
+    next();
+});
+
+app.use((req, res, next) =&gt; {
+    console.log('Second custom middleware executed');
+    next();
+});
+</code></pre>
+<p>Now, the console should log the execution of each middleware in the order they are defined when a request is made to the server.</p>
+<h2 id="complete-code-serverjs"><a class="header" href="#complete-code-serverjs">Complete Code: <code>server.js</code></a></h2>
+<pre><code class="language-javascript">const express = require('express');
+const morgan = require('morgan');
+const app = express();
+const port = 3000;
+
+// Third-party middleware for logging requests
+app.use(morgan('dev'));
+
+// Custom middleware for logging request details
+app.use((req, res, next) =&gt; {
+    console.log(`Request Details - Method: ${req.method}, URL: ${req.url}`);
+    next();
+});
+
+// Additional custom middleware
+app.use((req, res, next) =&gt; {
+    console.log('First custom middleware executed');
+    next();
+});
+
+app.use((req, res, next) =&gt; {
+    console.log('Second custom middleware executed');
+    next();
+});
+
+// Built-in middleware for serving static files
+app.use(express.static('public'));
+
+// Route handlers
+app.get('/', (req, res) =&gt; {
+    res.send('Home Page');
+});
+
+app.get('/about', (req, res) =&gt; {
+    res.send('About Page');
+});
+
+// Error handling middleware
+app.use((err, req, res, next) =&gt; {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
+
+// 404 handler middleware
+app.use((req, res) =&gt; {
+    res.status(404).send('Page not found');
+});
+
+app.listen(port, () =&gt; {
+    console.log(`Server is running on port ${port}`);
+});
+</code></pre>
+<p>By following these steps, you will have a comprehensive example of middleware usage in an Express.js application, demonstrating custom middleware, built-in middleware for static files, and third-party middleware for logging. This example provides a solid foundation for understanding how middleware works and how to use it effectively in your applications.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs---mongodb"><a class="header" href="#nodejs---mongodb">Node.js - MongoDB</a></h1>
+<p>In this tutorial, we will explore how to integrate MongoDB, a NoSQL database, into our Node.js application. This will allow us to store, retrieve, update, and delete data in a structured manner. We will use Mongoose, an Object Data Modeling (ODM) library for MongoDB and Node.js, to simplify our interactions with the database.</p>
+<h2 id="introduction-to-mongodb"><a class="header" href="#introduction-to-mongodb">Introduction to MongoDB</a></h2>
+<p>MongoDB is a NoSQL database that stores data in collections and documents. Unlike SQL databases that use tables, rows, and columns, MongoDB uses a flexible schema model to store data in a format similar to JSON. Each document in a collection is a record and contains key-value pairs.</p>
+<h2 id="key-concepts"><a class="header" href="#key-concepts">Key Concepts:</a></h2>
+<ul>
+<li><strong>Collection:</strong> Analogous to a table in SQL databases. It stores documents of a particular type.</li>
+<li><strong>Document:</strong> A single record in a collection. It is similar to a JSON object and contains data in key-value pairs.</li>
+<li><strong>MongoDB Atlas:</strong> A cloud-hosted MongoDB service, making it easier to manage and scale our database.</li>
+</ul>
+<h2 id="step-1-create-a-mongodb-atlas-account"><a class="header" href="#step-1-create-a-mongodb-atlas-account">Step 1: Create a MongoDB Atlas Account</a></h2>
+<ol>
+<li>Visit <a href="https://www.mongodb.com/cloud/atlas">MongoDB Atlas</a> and sign up for a free account.</li>
+<li>After signing up, log in with your credentials.</li>
+</ol>
+<h2 id="step-2-create-a-cluster"><a class="header" href="#step-2-create-a-cluster">Step 2: Create a Cluster</a></h2>
+<ol>
+<li>Click on "Build a New Cluster."</li>
+<li>Choose the free tier and the default settings for provider and region.</li>
+<li>Name your cluster (e.g., "NodeCluster") and create it.</li>
+</ol>
+<h2 id="step-3-create-a-database-and-collection"><a class="header" href="#step-3-create-a-database-and-collection">Step 3: Create a Database and Collection</a></h2>
+<ol>
+<li>After the cluster is created, click on "Collections."</li>
+<li>Click on "Add My Own Data" to create a new database and collection.</li>
+<li>Name your database (e.g., "node_tutorial") and collection (e.g., "blogs").</li>
+</ol>
+<h2 id="step-4-create-a-database-user"><a class="header" href="#step-4-create-a-database-user">Step 4: Create a Database User</a></h2>
+<ol>
+<li>Navigate to "Database Access" and create a new user.</li>
+<li>Set a username (e.g., "net_ninja") and a password (e.g., "test1234").</li>
+<li>Grant the user read and write access to any database.</li>
+</ol>
+<h2 id="step-5-obtain-connection-string"><a class="header" href="#step-5-obtain-connection-string">Step 5: Obtain Connection String</a></h2>
+<ol>
+<li>Go back to the cluster and click on "Connect."</li>
+<li>Choose "Connect your application" and copy the provided connection string.</li>
+</ol>
+<h2 id="connecting-to-mongodb-with-mongoose"><a class="header" href="#connecting-to-mongodb-with-mongoose">Connecting to MongoDB with Mongoose</a></h2>
+<p>First, we need to install Mongoose:</p>
+<pre><code class="language-bash">npm install mongoose
+</code></pre>
+<h2 id="step-1-set-up-the-connection"><a class="header" href="#step-1-set-up-the-connection">Step 1: Set Up the Connection</a></h2>
+<p>Create a new variable for the connection string in your <code>app.js</code> file:</p>
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+
+const dbURI = 'your-connection-string-here';
+
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() =&gt; console.log('Connected to DB'))
+  .catch((err) =&gt; console.log(err));
+</code></pre>
+<p>Replace <code>your-connection-string-here</code> with the actual connection string, replacing <code>&lt;username&gt;</code> and <code>&lt;password&gt;</code> with your MongoDB username and password, and <code>&lt;dbname&gt;</code> with your database name.</p>
+<h2 id="step-2-define-a-schema-and-model"><a class="header" href="#step-2-define-a-schema-and-model">Step 2: Define a Schema and Model</a></h2>
+<p>Create a folder named <code>models</code> and a file <code>blog.js</code> inside it:</p>
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const blogSchema = new Schema({
+  title: { type: String, required: true },
+  snippet: { type: String, required: true },
+  body: { type: String, required: true },
+}, { timestamps: true });
+
+const Blog = mongoose.model('Blog', blogSchema);
+
+module.exports = Blog;
+</code></pre>
+<h2 id="step-3-interact-with-the-database"><a class="header" href="#step-3-interact-with-the-database">Step 3: Interact with the Database</a></h2>
+<p>Now, let's create some routes to interact with our database.</p>
+<h3 id="adding-a-blog"><a class="header" href="#adding-a-blog">Adding a Blog</a></h3>
+<p>In your <code>app.js</code> file, create a route to add a blog:</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+const Blog = require('./models/blog');
+
+app.get('/add-blog', (req, res) =&gt; {
+  const blog = new Blog({
+    title: 'New Blog',
+    snippet: 'About my new blog',
+    body: 'More about my new blog'
+  });
+
+  blog.save()
+    .then((result) =&gt; res.send(result))
+    .catch((err) =&gt; console.log(err));
+});
+</code></pre>
+<h3 id="fetching-all-blogs"><a class="header" href="#fetching-all-blogs">Fetching All Blogs</a></h3>
+<p>Create a route to fetch all blogs:</p>
+<pre><code class="language-javascript">app.get('/all-blogs', (req, res) =&gt; {
+  Blog.find()
+    .then((result) =&gt; res.send(result))
+    .catch((err) =&gt; console.log(err));
+});
+</code></pre>
+<h3 id="fetching-a-single-blog"><a class="header" href="#fetching-a-single-blog">Fetching a Single Blog</a></h3>
+<p>Create a route to fetch a single blog by ID:</p>
+<pre><code class="language-javascript">app.get('/single-blog/:id', (req, res) =&gt; {
+  Blog.findById(req.params.id)
+    .then((result) =&gt; res.send(result))
+    .catch((err) =&gt; console.log(err));
+});
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-mongodb---project-setup"><a class="header" href="#example-mongodb---project-setup">Example: MongoDB - Project Setup</a></h1>
+<ol>
+<li>
+<p><strong>Initialize a new Node.js project:</strong></p>
+<pre><code class="language-bash">mkdir node-mongodb-example
+cd node-mongodb-example
+npm init -y
+</code></pre>
+</li>
+<li>
+<p><strong>Install necessary packages:</strong></p>
+<pre><code class="language-bash">npm install express mongoose
+</code></pre>
+</li>
+<li>
+<p><strong>Create the necessary files and folders:</strong></p>
+<pre><code class="language-bash">touch app.js
+mkdir models
+touch models/blog.js
+</code></pre>
+</li>
+</ol>
+<h2 id="step-2-set-up-mongoose-and-mongodb"><a class="header" href="#step-2-set-up-mongoose-and-mongodb">Step 2: Set Up Mongoose and MongoDB</a></h2>
+<ol>
+<li>
+<p><strong>Create the Mongoose connection and define the Blog schema in <code>models/blog.js</code>:</strong></p>
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const blogSchema = new Schema({
+  title: { type: String, required: true },
+  snippet: { type: String, required: true },
+  body: { type: String, required: true },
+}, { timestamps: true });
+
+const Blog = mongoose.model('Blog', blogSchema);
+
+module.exports = Blog;
+</code></pre>
+</li>
+<li>
+<p><strong>Set up the Express server and Mongoose connection in <code>app.js</code>:</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+const mongoose = require('mongoose');
+const Blog = require('./models/blog');
+
+const app = express();
+
+const dbURI = 'your-connection-string-here';
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((result) =&gt; console.log('Connected to DB'))
+  .catch((err) =&gt; console.log(err));
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Routes
+// Add a new blog
+app.get('/add-blog', (req, res) =&gt; {
+  const blog = new Blog({
+    title: 'New Blog',
+    snippet: 'About my new blog',
+    body: 'More about my new blog'
+  });
+
+  blog.save()
+    .then((result) =&gt; res.send(result))
+    .catch((err) =&gt; console.log(err));
+});
+
+// Fetch all blogs
+app.get('/all-blogs', (req, res) =&gt; {
+  Blog.find()
+    .then((result) =&gt; res.send(result))
+    .catch((err) =&gt; console.log(err));
+});
+
+// Fetch a single blog by ID
+app.get('/single-blog/:id', (req, res) =&gt; {
+  Blog.findById(req.params.id)
+    .then((result) =&gt; res.send(result))
+    .catch((err) =&gt; console.log(err));
+});
+
+const port = 3000;
+app.listen(port, () =&gt; {
+  console.log(`Server is running on port ${port}`);
+});
+</code></pre>
+</li>
+</ol>
+<h2 id="step-3-replace-placeholder-with-actual-connection-string"><a class="header" href="#step-3-replace-placeholder-with-actual-connection-string">Step 3: Replace Placeholder with Actual Connection String</a></h2>
+<p>Replace <code>your-connection-string-here</code> in the <code>app.js</code> file with your actual MongoDB connection string from MongoDB Atlas. The connection string should look something like this:</p>
+<pre><code class="language-javascript">const dbURI = 'mongodb+srv://&lt;username&gt;:&lt;password&gt;@cluster0.mongodb.net/&lt;dbname&gt;?retryWrites=true&amp;w=majority';
+</code></pre>
+<p>Make sure to replace <code>&lt;username&gt;</code>, <code>&lt;password&gt;</code>, and <code>&lt;dbname&gt;</code> with your actual MongoDB Atlas credentials and database name.</p>
+<h2 id="step-4-run-the-application"><a class="header" href="#step-4-run-the-application">Step 4: Run the Application</a></h2>
+<ol>
+<li>
+<p><strong>Start your Node.js application:</strong></p>
+<pre><code class="language-bash">node app.js
+</code></pre>
+</li>
+<li>
+<p><strong>Test the Routes:</strong></p>
+<ul>
+<li>
+<p><strong>Add a New Blog:</strong>
+Open your browser and go to <code>http://localhost:3000/add-blog</code>. This will add a new blog post to your MongoDB database.</p>
+</li>
+<li>
+<p><strong>Fetch All Blogs:</strong>
+Open your browser and go to <code>http://localhost:3000/all-blogs</code>. This will fetch and display all blog posts stored in your database.</p>
+</li>
+<li>
+<p><strong>Fetch a Single Blog by ID:</strong>
+First, get an ID from one of the blog posts returned by <code>/all-blogs</code>. Then, go to <code>http://localhost:3000/single-blog/&lt;id&gt;</code> to fetch a specific blog post by its ID.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="full-example-code"><a class="header" href="#full-example-code">Full Example Code</a></h2>
+<p>Here is the full code for <code>app.js</code>:</p>
+<pre><code class="language-javascript">const express = require('express');
+const mongoose = require('mongoose');
+const Blog = require('./models/blog');
+
+const app = express();
+
+const dbURI = 'your-connection-string-here';
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((result) =&gt; console.log('Connected to DB'))
+  .catch((err) =&gt; console.log(err));
+
+app.use(express.json());
+
+app.get('/add-blog', (req, res) =&gt; {
+  const blog = new Blog({
+    title: 'New Blog',
+    snippet: 'About my new blog',
+    body: 'More about my new blog'
+  });
+
+  blog.save()
+    .then((result) =&gt; res.send(result))
+    .catch((err) =&gt; console.log(err));
+});
+
+app.get('/all-blogs', (req, res) =&gt; {
+  Blog.find()
+    .then((result) =&gt; res.send(result))
+    .catch((err) =&gt; console.log(err));
+});
+
+app.get('/single-blog/:id', (req, res) =&gt; {
+  Blog.findById(req.params.id)
+    .then((result) =&gt; res.send(result))
+    .catch((err) =&gt; console.log(err));
+});
+
+const port = 3000;
+app.listen(port, () =&gt; {
+  console.log(`Server is running on port ${port}`);
+});
+</code></pre>
+<p>And the code for <code>models/blog.js</code>:</p>
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const blogSchema = new Schema({
+  title: { type: String, required: true },
+  snippet: { type: String, required: true },
+  body: { type: String, required: true },
+}, { timestamps: true });
+
+const Blog = mongoose.model('Blog', blogSchema);
+
+module.exports = Blog;
+</code></pre>
+<p>This comprehensive example should give you a solid foundation to start working with MongoDB and Mongoose in your Node.js applications.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs---get-post--delete-requests"><a class="header" href="#nodejs---get-post--delete-requests">Node.js - GET, POST &amp; DELETE Requests</a></h1>
+<p>In this tutorial, we will discuss handling different types of HTTP requests in a Node.js application using the Express framework. We will focus on three main types of requests: GET, POST, and DELETE. We will also see how to implement these requests in a simple blog application.</p>
+<h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
+<p>HTTP requests are the foundation of web communication between clients and servers. Different request types serve different purposes:</p>
+<ul>
+<li><strong>GET</strong>: Retrieve data from the server.</li>
+<li><strong>POST</strong>: Send data to the server, typically to create new resources.</li>
+<li><strong>DELETE</strong>: Remove resources from the server.</li>
+</ul>
+<h2 id="setting-up-the-environment-1"><a class="header" href="#setting-up-the-environment-1">Setting Up the Environment</a></h2>
+<p>Before we dive into the code, ensure you have Node.js and Express installed. You can set up a new Express project using the following commands:</p>
+<pre><code class="language-bash">npm init -y
+npm install express
+</code></pre>
+<p>Create an <code>app.js</code> file and set up a basic Express server:</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.urlencoded({ extended: true }));
+
+app.listen(port, () =&gt; {
+  console.log(`Server running at http://localhost:${port}`);
+});
+</code></pre>
+<h2 id="handling-get-requests"><a class="header" href="#handling-get-requests">Handling GET Requests</a></h2>
+<p>GET requests are used to retrieve data. In our blog application, we will handle GET requests to fetch all blogs and individual blog details.</p>
+<h2 id="fetching-all-blogs-1"><a class="header" href="#fetching-all-blogs-1">Fetching All Blogs</a></h2>
+<pre><code class="language-javascript">// Dummy data for blogs
+const blogs = [
+  { id: 1, title: 'First Blog', snippet: 'This is the first blog' },
+  { id: 2, title: 'Second Blog', snippet: 'This is the second blog' },
+];
+
+// Route to get all blogs
+app.get('/blogs', (req, res) =&gt; {
+  res.json(blogs);
+});
+</code></pre>
+<h2 id="fetching-a-single-blog-1"><a class="header" href="#fetching-a-single-blog-1">Fetching a Single Blog</a></h2>
+<pre><code class="language-javascript">// Route to get a single blog by ID
+app.get('/blogs/:id', (req, res) =&gt; {
+  const blog = blogs.find(b =&gt; b.id === parseInt(req.params.id));
+  if (blog) {
+    res.json(blog);
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});
+</code></pre>
+<h2 id="handling-post-requests"><a class="header" href="#handling-post-requests">Handling POST Requests</a></h2>
+<p>POST requests are used to send data to the server to create new resources. We will create a new blog post via a POST request.</p>
+<h2 id="creating-a-new-blog"><a class="header" href="#creating-a-new-blog">Creating a New Blog</a></h2>
+<ol>
+<li><strong>HTML Form for Creating a Blog</strong>:</li>
+</ol>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Create Blog&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form action="/blogs" method="POST"&gt;
+    &lt;label for="title"&gt;Title:&lt;/label&gt;
+    &lt;input type="text" id="title" name="title"&gt;
+    &lt;br&gt;
+    &lt;label for="snippet"&gt;Snippet:&lt;/label&gt;
+    &lt;input type="text" id="snippet" name="snippet"&gt;
+    &lt;br&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ol start="2">
+<li><strong>Handling the POST Request in Express</strong>:</li>
+</ol>
+<pre><code class="language-javascript">// Middleware to parse URL-encoded data
+app.use(express.urlencoded({ extended: true }));
+
+// Route to handle form submission
+app.post('/blogs', (req, res) =&gt; {
+  const newBlog = {
+    id: blogs.length + 1,
+    title: req.body.title,
+    snippet: req.body.snippet,
+  };
+  blogs.push(newBlog);
+  res.redirect('/blogs');
+});
+</code></pre>
+<h2 id="handling-delete-requests"><a class="header" href="#handling-delete-requests">Handling DELETE Requests</a></h2>
+<p>DELETE requests are used to remove resources from the server. We will implement a route to delete a blog post.</p>
+<h2 id="deleting-a-blog"><a class="header" href="#deleting-a-blog">Deleting a Blog</a></h2>
+<ol>
+<li><strong>HTML for Delete Button</strong>:</li>
+</ol>
+<pre><code class="language-html">&lt;!-- Part of the blog details page --&gt;
+&lt;button class="delete-btn" data-id="&lt;%= blog.id %&gt;"&gt;Delete&lt;/button&gt;
+</code></pre>
+<ol start="2">
+<li><strong>Client-Side JavaScript to Send DELETE Request</strong>:</li>
+</ol>
+<pre><code class="language-html">&lt;script&gt;
+document.querySelectorAll('.delete-btn').forEach(button =&gt; {
+  button.addEventListener('click', function () {
+    const id = this.getAttribute('data-id');
+    fetch(`/blogs/${id}`, {
+      method: 'DELETE',
+    }).then(response =&gt; {
+      if (response.ok) {
+        window.location.href = '/blogs';
+      } else {
+        console.error('Failed to delete blog');
+      }
+    });
+  });
+});
+&lt;/script&gt;
+</code></pre>
+<ol start="3">
+<li><strong>Handling the DELETE Request in Express</strong>:</li>
+</ol>
+<pre><code class="language-javascript">// Route to handle delete request
+app.delete('/blogs/:id', (req, res) =&gt; {
+  const blogId = parseInt(req.params.id);
+  const blogIndex = blogs.findIndex(b =&gt; b.id === blogId);
+  if (blogIndex !== -1) {
+    blogs.splice(blogIndex, 1);
+    res.json({ redirect: '/blogs' });
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});
+</code></pre>
+<h2 id="complete-code"><a class="header" href="#complete-code">Complete Code</a></h2>
+<p>Combining all the parts, our <code>app.js</code> file looks like this:</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.urlencoded({ extended: true }));
+
+const blogs = [
+  { id: 1, title: 'First Blog', snippet: 'This is the first blog' },
+  { id: 2, title: 'Second Blog', snippet: 'This is the second blog' },
+];
+
+app.get('/blogs', (req, res) =&gt; {
+  res.json(blogs);
+});
+
+app.get('/blogs/:id', (req, res) =&gt; {
+  const blog = blogs.find(b =&gt; b.id === parseInt(req.params.id));
+  if (blog) {
+    res.json(blog);
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});
+
+app.post('/blogs', (req, res) =&gt; {
+  const newBlog = {
+    id: blogs.length + 1,
+    title: req.body.title,
+    snippet: req.body.snippet,
+  };
+  blogs.push(newBlog);
+  res.redirect('/blogs');
+});
+
+app.delete('/blogs/:id', (req, res) =&gt; {
+  const blogId = parseInt(req.params.id);
+  const blogIndex = blogs.findIndex(b =&gt; b.id === blogId);
+  if (blogIndex !== -1) {
+    blogs.splice(blogIndex, 1);
+    res.json({ redirect: '/blogs' });
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});
+
+app.listen(port, () =&gt; {
+  console.log(`Server running at http://localhost:${port}`);
+});
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-get-post-delete-request"><a class="header" href="#example-get-post-delete-request">Example: Get, Post, Delete Request</a></h1>
+<h2 id="code-1"><a class="header" href="#code-1">Code</a></h2>
+<pre><code class="language-sh">blog-app/
+├── public/
+│   ├── styles.css
+│   └── scripts.js
+├── views/
+│   ├── index.ejs
+│   ├── create.ejs
+│   └── details.ejs
+├── app.js
+└── package.json
+</code></pre>
+<h2 id="1-appjs"><a class="header" href="#1-appjs">1. <code>app.js</code></a></h2>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
+
+let blogs = [
+  { id: 1, title: 'First Blog', snippet: 'This is the first blog', body: 'Content of the first blog' },
+  { id: 2, title: 'Second Blog', snippet: 'This is the second blog', body: 'Content of the second blog' },
+];
+
+// Route to get all blogs
+app.get('/blogs', (req, res) =&gt; {
+  res.render('index', { blogs });
+});
+
+// Route to create a new blog (form)
+app.get('/blogs/create', (req, res) =&gt; {
+  res.render('create');
+});
+
+// Route to handle form submission
+app.post('/blogs', (req, res) =&gt; {
+  const newBlog = {
+    id: blogs.length + 1,
+    title: req.body.title,
+    snippet: req.body.snippet,
+    body: req.body.body,
+  };
+  blogs.push(newBlog);
+  res.redirect('/blogs');
+});
+
+// Route to get a single blog by ID
+app.get('/blogs/:id', (req, res) =&gt; {
+  const blog = blogs.find(b =&gt; b.id === parseInt(req.params.id));
+  if (blog) {
+    res.render('details', { blog });
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});
+
+// Route to handle delete request
+app.delete('/blogs/:id', (req, res) =&gt; {
+  const blogId = parseInt(req.params.id);
+  blogs = blogs.filter(b =&gt; b.id !== blogId);
+  res.json({ redirect: '/blogs' });
+});
+
+app.listen(port, () =&gt; {
+  console.log(`Server running at http://localhost:${port}`);
+});
+</code></pre>
+<h2 id="2-viewsindexejs"><a class="header" href="#2-viewsindexejs">2. <code>views/index.ejs</code></a></h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Blogs&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;All Blogs&lt;/h1&gt;
+  &lt;a href="/blogs/create"&gt;Create a new blog&lt;/a&gt;
+  &lt;div class="blogs"&gt;
+    &lt;% blogs.forEach(blog =&gt; { %&gt;
+      &lt;div class="blog"&gt;
+        &lt;h3&gt;&lt;a href="/blogs/&lt;%= blog.id %&gt;"&gt;&lt;%= blog.title %&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;p&gt;&lt;%= blog.snippet %&gt;&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;% }) %&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="3-viewscreateejs"><a class="header" href="#3-viewscreateejs">3. <code>views/create.ejs</code></a></h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Create Blog&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Create a New Blog&lt;/h1&gt;
+  &lt;form action="/blogs" method="POST"&gt;
+    &lt;label for="title"&gt;Title:&lt;/label&gt;
+    &lt;input type="text" id="title" name="title" required&gt;
+    &lt;br&gt;
+    &lt;label for="snippet"&gt;Snippet:&lt;/label&gt;
+    &lt;input type="text" id="snippet" name="snippet" required&gt;
+    &lt;br&gt;
+    &lt;label for="body"&gt;Body:&lt;/label&gt;
+    &lt;textarea id="body" name="body" required&gt;&lt;/textarea&gt;
+    &lt;br&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="4-viewsdetailsejs"><a class="header" href="#4-viewsdetailsejs">4. <code>views/details.ejs</code></a></h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Blog Details&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;&lt;%= blog.title %&gt;&lt;/h1&gt;
+  &lt;p&gt;&lt;%= blog.body %&gt;&lt;/p&gt;
+  &lt;button class="delete-btn" data-id="&lt;%= blog.id %&gt;"&gt;Delete&lt;/button&gt;
+  &lt;script src="/scripts.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="5-publicstylescss"><a class="header" href="#5-publicstylescss">5. <code>public/styles.css</code></a></h2>
+<pre><code class="language-css">body {
+  font-family: Arial, sans-serif;
+}
+
+.blog {
+  margin-bottom: 20px;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+</code></pre>
+<h2 id="6-publicscriptsjs"><a class="header" href="#6-publicscriptsjs">6. <code>public/scripts.js</code></a></h2>
+<pre><code class="language-javascript">document.querySelectorAll('.delete-btn').forEach(button =&gt; {
+  button.addEventListener('click', function () {
+    const id = this.getAttribute('data-id');
+    fetch(`/blogs/${id}`, {
+      method: 'DELETE',
+    }).then(response =&gt; {
+      if (response.ok) {
+        window.location.href = '/blogs';
+      } else {
+        console.error('Failed to delete blog');
+      }
+    });
+  });
+});
+</code></pre>
+<h2 id="running-the-application-2"><a class="header" href="#running-the-application-2">Running the Application</a></h2>
+<ol>
+<li>
+<p>Initialize your project and install the necessary dependencies:</p>
+<pre><code class="language-bash">npm init -y
+npm install express
+</code></pre>
+</li>
+<li>
+<p>Create the project structure and files as shown above.</p>
+</li>
+<li>
+<p>Start the server:</p>
+<pre><code class="language-bash">node app.js
+</code></pre>
+</li>
+<li>
+<p>Open your browser and navigate to <code>http://localhost:3000/blogs</code> to see the list of blogs. You can create new blogs and delete existing ones using the provided form and delete button.</p>
+</li>
+</ol>
+<p>This example demonstrates the basic CRUD operations using GET, POST, and DELETE requests in a Node.js application with Express, along with client-side JavaScript for handling form submissions and deletions.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs---express-router--mvc"><a class="header" href="#nodejs---express-router--mvc">Node.js - Express Router &amp; MVC</a></h1>
+<p>In this tutorial, we will explore the Express Router and the Model-View-Controller (MVC) pattern to organize and modularize our Node.js applications. This will enhance the maintainability and scalability of our codebase.</p>
+<h2 id="overview-1"><a class="header" href="#overview-1">Overview</a></h2>
+<p>As applications grow, managing all routes and logic in a single file becomes cumbersome. By leveraging the Express Router and adopting the MVC pattern, we can cleanly separate concerns, making our code more modular and easier to manage.</p>
+<h2 id="objectives"><a class="header" href="#objectives">Objectives</a></h2>
+<ol>
+<li>Introduce the Express Router to manage routes efficiently.</li>
+<li>Implement the MVC pattern to structure our application.</li>
+</ol>
+<h2 id="prerequisites-1"><a class="header" href="#prerequisites-1">Prerequisites</a></h2>
+<ul>
+<li>Basic understanding of Node.js and Express.js.</li>
+<li>Node.js and npm installed.</li>
+</ul>
+<h2 id="setting-up-the-express-router"><a class="header" href="#setting-up-the-express-router">Setting Up the Express Router</a></h2>
+<h2 id="step-1-create-the-routes-folder"><a class="header" href="#step-1-create-the-routes-folder">Step 1: Create the <code>routes</code> Folder</a></h2>
+<p>First, create a <code>routes</code> folder to organize our route files.</p>
+<pre><code class="language-bash">mkdir routes
+</code></pre>
+<h2 id="step-2-create-the-blogroutesjs-file"><a class="header" href="#step-2-create-the-blogroutesjs-file">Step 2: Create the <code>blogRoutes.js</code> File</a></h2>
+<p>Create a new file called <code>blogRoutes.js</code> inside the <code>routes</code> folder.</p>
+<pre><code class="language-bash">touch routes/blogRoutes.js
+</code></pre>
+<h2 id="step-3-move-blog-routes-to-blogroutesjs"><a class="header" href="#step-3-move-blog-routes-to-blogroutesjs">Step 3: Move Blog Routes to <code>blogRoutes.js</code></a></h2>
+<p>Cut the blog routes from <code>app.js</code> and paste them into <code>blogRoutes.js</code>.</p>
+<p><strong>app.js (before):</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+// other requires and middleware
+
+// Blog routes
+app.get('/blogs', (req, res) =&gt; {
+  // logic
+});
+
+app.get('/blogs/:id', (req, res) =&gt; {
+  // logic
+});
+
+app.post('/blogs', (req, res) =&gt; {
+  // logic
+});
+
+// more routes
+
+app.listen(3000, () =&gt; console.log('Server is running'));
+</code></pre>
+<p><strong>blogRoutes.js:</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+const router = express.Router();
+const Blog = require('../models/blog'); // Assuming you have a Blog model
+
+// Get all blogs
+router.get('/blogs', (req, res) =&gt; {
+  // logic
+});
+
+// Get a single blog by ID
+router.get('/blogs/:id', (req, res) =&gt; {
+  // logic
+});
+
+// Create a new blog
+router.post('/blogs', (req, res) =&gt; {
+  // logic
+});
+
+module.exports = router;
+</code></pre>
+<h2 id="step-4-use-the-router-in-appjs"><a class="header" href="#step-4-use-the-router-in-appjs">Step 4: Use the Router in <code>app.js</code></a></h2>
+<p>Import the <code>blogRoutes.js</code> file into <code>app.js</code> and use it with the Express app.</p>
+<p><strong>app.js (after):</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+const blogRoutes = require('./routes/blogRoutes'); // Import the blog routes
+
+// other requires and middleware
+
+// Use the blog routes
+app.use(blogRoutes);
+
+app.listen(3000, () =&gt; console.log('Server is running'));
+</code></pre>
+<h2 id="implementing-mvc"><a class="header" href="#implementing-mvc">Implementing MVC</a></h2>
+<h2 id="step-1-create-the-controllers-folder"><a class="header" href="#step-1-create-the-controllers-folder">Step 1: Create the <code>controllers</code> Folder</a></h2>
+<p>Create a <code>controllers</code> folder to organize controller files.</p>
+<pre><code class="language-bash">mkdir controllers
+</code></pre>
+<h2 id="step-2-create-the-blogcontrollerjs-file"><a class="header" href="#step-2-create-the-blogcontrollerjs-file">Step 2: Create the <code>blogController.js</code> File</a></h2>
+<p>Create a new file called <code>blogController.js</code> inside the <code>controllers</code> folder.</p>
+<pre><code class="language-bash">touch controllers/blogController.js
+</code></pre>
+<h2 id="step-3-move-route-logic-to-blogcontrollerjs"><a class="header" href="#step-3-move-route-logic-to-blogcontrollerjs">Step 3: Move Route Logic to <code>blogController.js</code></a></h2>
+<p>Define the controller functions in <code>blogController.js</code>.</p>
+<p><strong>blogController.js:</strong></p>
+<pre><code class="language-javascript">const Blog = require('../models/blog');
+
+// Get all blogs
+const blogIndex = (req, res) =&gt; {
+  // logic
+};
+
+// Get a single blog by ID
+const blogDetails = (req, res) =&gt; {
+  // logic
+};
+
+// Create a new blog (GET request to render form)
+const blogCreateGet = (req, res) =&gt; {
+  // logic
+};
+
+// Create a new blog (POST request to handle form submission)
+const blogCreatePost = (req, res) =&gt; {
+  // logic
+};
+
+// Delete a blog
+const blogDelete = (req, res) =&gt; {
+  // logic
+};
+
+module.exports = {
+  blogIndex,
+  blogDetails,
+  blogCreateGet,
+  blogCreatePost,
+  blogDelete
+};
+</code></pre>
+<h2 id="step-4-refactor-blogroutesjs-to-use-controllers"><a class="header" href="#step-4-refactor-blogroutesjs-to-use-controllers">Step 4: Refactor <code>blogRoutes.js</code> to Use Controllers</a></h2>
+<p>Update <code>blogRoutes.js</code> to use the controller functions.</p>
+<p><strong>blogRoutes.js (after):</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+const router = express.Router();
+const blogController = require('../controllers/blogController');
+
+// Get all blogs
+router.get('/blogs', blogController.blogIndex);
+
+// Get a single blog by ID
+router.get('/blogs/:id', blogController.blogDetails);
+
+// Create a new blog (GET request to render form)
+router.get('/blogs/create', blogController.blogCreateGet);
+
+// Create a new blog (POST request to handle form submission)
+router.post('/blogs', blogController.blogCreatePost);
+
+// Delete a blog
+router.delete('/blogs/:id', blogController.blogDelete);
+
+module.exports = router;
+</code></pre>
+<h2 id="step-5-organize-views"><a class="header" href="#step-5-organize-views">Step 5: Organize Views</a></h2>
+<p>Create a folder structure within <code>views</code> to organize templates.</p>
+<pre><code class="language-bash">mkdir views/blogs
+</code></pre>
+<p>Move blog-related templates to the <code>views/blogs</code> folder.</p>
+<h2 id="step-6-update-controller-to-reflect-view-path-changes"><a class="header" href="#step-6-update-controller-to-reflect-view-path-changes">Step 6: Update Controller to Reflect View Path Changes</a></h2>
+<p>Adjust the controller functions to reflect the new paths for the views.</p>
+<p><strong>blogController.js (updated):</strong></p>
+<pre><code class="language-javascript">const Blog = require('../models/blog');
+
+// Get all blogs
+const blogIndex = (req, res) =&gt; {
+  Blog.find()
+    .then(result =&gt; res.render('blogs/index', { blogs: result }))
+    .catch(err =&gt; console.log(err));
+};
+
+// Get a single blog by ID
+const blogDetails = (req, res) =&gt; {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then(result =&gt; res.render('blogs/details', { blog: result }))
+    .catch(err =&gt; console.log(err));
+};
+
+// Create a new blog (GET request to render form)
+const blogCreateGet = (req, res) =&gt; {
+  res.render('blogs/create');
+};
+
+// Create a new blog (POST request to handle form submission)
+const blogCreatePost = (req, res) =&gt; {
+  const blog = new Blog(req.body);
+  blog.save()
+    .then(result =&gt; res.redirect('/blogs'))
+    .catch(err =&gt; console.log(err));
+};
+
+// Delete a blog
+const blogDelete = (req, res) =&gt; {
+  const id = req.params.id;
+  Blog.findByIdAndDelete(id)
+    .then(result =&gt; res.json({ redirect: '/blogs' }))
+    .catch(err =&gt; console.log(err));
+};
+
+module.exports = {
+  blogIndex,
+  blogDetails,
+  blogCreateGet,
+  blogCreatePost,
+  blogDelete
+};
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-express-router-mvc"><a class="header" href="#example-express-router-mvc">Example: Express Router MVC</a></h1>
+<h2 id="directory-structure"><a class="header" href="#directory-structure">Directory Structure</a></h2>
+<p>Here's the directory structure we'll use:</p>
+<pre><code class="language-sh">my-blog-app/
+├── controllers/
+│   └── blogController.js
+├── models/
+│   └── blog.js
+├── routes/
+│   └── blogRoutes.js
+├── views/
+│   └── blogs/
+│       ├── create.ejs
+│       ├── details.ejs
+│       ├── index.ejs
+├── app.js
+└── package.json
+</code></pre>
+<h2 id="step-1-initialize-the-project-1"><a class="header" href="#step-1-initialize-the-project-1">Step 1: Initialize the Project</a></h2>
+<p>First, initialize a new Node.js project and install the required dependencies:</p>
+<pre><code class="language-bash">mkdir my-blog-app
+cd my-blog-app
+npm init -y
+npm install express mongoose ejs
+</code></pre>
+<h2 id="step-2-create-the-appjs-file"><a class="header" href="#step-2-create-the-appjs-file">Step 2: Create the <code>app.js</code> File</a></h2>
+<p>Create the main application file <code>app.js</code>:</p>
+<p><strong>app.js:</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+const mongoose = require('mongoose');
+const blogRoutes = require('./routes/blogRoutes');
+
+const app = express();
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/myblog', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() =&gt; console.log('Connected to MongoDB'))
+  .catch(err =&gt; console.log(err));
+
+// Middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.set('view engine', 'ejs');
+
+// Routes
+app.use(blogRoutes);
+
+app.listen(3000, () =&gt; console.log('Server is running on port 3000'));
+</code></pre>
+<h2 id="step-3-create-the-blog-model"><a class="header" href="#step-3-create-the-blog-model">Step 3: Create the Blog Model</a></h2>
+<p>Create the <code>models/blog.js</code> file to define the Blog model:</p>
+<p><strong>models/blog.js:</strong></p>
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const blogSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  snippet: {
+    type: String,
+    required: true
+  },
+  body: {
+    type: String,
+    required: true
+  }
+}, { timestamps: true });
+
+const Blog = mongoose.model('Blog', blogSchema);
+module.exports = Blog;
+</code></pre>
+<h2 id="step-4-create-the-blog-controller"><a class="header" href="#step-4-create-the-blog-controller">Step 4: Create the Blog Controller</a></h2>
+<p>Create the <code>controllers/blogController.js</code> file to handle blog-related logic:</p>
+<p><strong>controllers/blogController.js:</strong></p>
+<pre><code class="language-javascript">const Blog = require('../models/blog');
+
+// Get all blogs
+const blogIndex = (req, res) =&gt; {
+  Blog.find().sort({ createdAt: -1 })
+    .then(result =&gt; res.render('blogs/index', { blogs: result }))
+    .catch(err =&gt; console.log(err));
+};
+
+// Get a single blog by ID
+const blogDetails = (req, res) =&gt; {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then(result =&gt; res.render('blogs/details', { blog: result }))
+    .catch(err =&gt; console.log(err));
+};
+
+// Create a new blog (GET request to render form)
+const blogCreateGet = (req, res) =&gt; {
+  res.render('blogs/create');
+};
+
+// Create a new blog (POST request to handle form submission)
+const blogCreatePost = (req, res) =&gt; {
+  const blog = new Blog(req.body);
+  blog.save()
+    .then(result =&gt; res.redirect('/blogs'))
+    .catch(err =&gt; console.log(err));
+};
+
+// Delete a blog
+const blogDelete = (req, res) =&gt; {
+  const id = req.params.id;
+  Blog.findByIdAndDelete(id)
+    .then(result =&gt; res.json({ redirect: '/blogs' }))
+    .catch(err =&gt; console.log(err));
+};
+
+module.exports = {
+  blogIndex,
+  blogDetails,
+  blogCreateGet,
+  blogCreatePost,
+  blogDelete
+};
+</code></pre>
+<h2 id="step-5-create-the-blog-routes"><a class="header" href="#step-5-create-the-blog-routes">Step 5: Create the Blog Routes</a></h2>
+<p>Create the <code>routes/blogRoutes.js</code> file to define blog-related routes:</p>
+<p><strong>routes/blogRoutes.js:</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+const router = express.Router();
+const blogController = require('../controllers/blogController');
+
+// Get all blogs
+router.get('/blogs', blogController.blogIndex);
+
+// Get a single blog by ID
+router.get('/blogs/:id', blogController.blogDetails);
+
+// Create a new blog (GET request to render form)
+router.get('/blogs/create', blogController.blogCreateGet);
+
+// Create a new blog (POST request to handle form submission)
+router.post('/blogs', blogController.blogCreatePost);
+
+// Delete a blog
+router.delete('/blogs/:id', blogController.blogDelete);
+
+module.exports = router;
+</code></pre>
+<h2 id="step-6-create-the-views"><a class="header" href="#step-6-create-the-views">Step 6: Create the Views</a></h2>
+<p>Create EJS templates in the <code>views/blogs</code> folder.</p>
+<p><strong>views/blogs/index.ejs:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;All Blogs&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;All Blogs&lt;/h1&gt;
+  &lt;% blogs.forEach(blog =&gt; { %&gt;
+    &lt;div&gt;
+      &lt;h2&gt;&lt;%= blog.title %&gt;&lt;/h2&gt;
+      &lt;p&gt;&lt;%= blog.snippet %&gt;&lt;/p&gt;
+      &lt;a href="/blogs/&lt;%= blog._id %&gt;"&gt;Read more&lt;/a&gt;
+      &lt;form action="/blogs/&lt;%= blog._id %&gt;?_method=DELETE" method="POST"&gt;
+        &lt;button type="submit"&gt;Delete&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;% }) %&gt;
+  &lt;a href="/blogs/create"&gt;Create a new blog&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>views/blogs/details.ejs:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;&lt;%= blog.title %&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;&lt;%= blog.title %&gt;&lt;/h1&gt;
+  &lt;p&gt;&lt;%= blog.body %&gt;&lt;/p&gt;
+  &lt;a href="/blogs"&gt;Back to all blogs&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>views/blogs/create.ejs:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Create a New Blog&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Create a New Blog&lt;/h1&gt;
+  &lt;form action="/blogs" method="POST"&gt;
+    &lt;label for="title"&gt;Title:&lt;/label&gt;
+    &lt;input type="text" id="title" name="title" required&gt;
+    &lt;label for="snippet"&gt;Snippet:&lt;/label&gt;
+    &lt;input type="text" id="snippet" name="snippet" required&gt;
+    &lt;label for="body"&gt;Body:&lt;/label&gt;
+    &lt;textarea id="body" name="body" required&gt;&lt;/textarea&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;a href="/blogs"&gt;Back to all blogs&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="step-7-test-the-application"><a class="header" href="#step-7-test-the-application">Step 7: Test the Application</a></h2>
+<p>Start your server:</p>
+<pre><code class="language-bash">node app.js
+</code></pre>
+<p>Visit <code>http://localhost:3000/blogs</code> in your browser. You should see the list of blogs, and you can create, view, and delete blogs using the provided routes and forms.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs----wrap-up"><a class="header" href="#nodejs----wrap-up">Node.js  - Wrap Up</a></h1>
+<p>In this final tutorial of our Node.js crash course, we will cover the last few enhancements for our Node.js project using Express and MongoDB. The enhancements include replacing the delete link with a trashcan icon and handling 404 errors more gracefully. This tutorial aims to maintain the precision and rigor of professional standards, ensuring a comprehensive understanding of the steps involved.</p>
+<h2 id="replacing-the-delete-link-with-a-trashcan-icon"><a class="header" href="#replacing-the-delete-link-with-a-trashcan-icon">Replacing the Delete Link with a Trashcan Icon</a></h2>
+<p>To enhance the user interface, we will replace the plain delete link with a trashcan icon. The steps to achieve this are as follows:</p>
+<ol>
+<li>
+<p><strong>Obtain the Trashcan Icon:</strong>
+Download the trashcan icon from the Material Icons website or obtain it from the GitHub repository. Save the SVG file into the <code>public</code> folder of your project. The <code>public</code> folder serves as the static files directory accessible from the front end.</p>
+<pre><code class="language-plaintext">public/
+├── images/
+│   └── trashcan.svg
+├── css/
+├── js/
+└── ...
+</code></pre>
+</li>
+<li>
+<p><strong>Reference the Icon in the Details View:</strong>
+Update the <code>details</code> view to reference the trashcan icon instead of the delete link. Modify the view file (<code>views/details.ejs</code> or <code>views/details.hbs</code> depending on your templating engine) as shown below:</p>
+<pre><code class="language-html">&lt;!-- Old delete link --&gt;
+&lt;!-- &lt;a href="/delete/&lt;%= blog._id %&gt;"&gt;Delete&lt;/a&gt; --&gt;
+
+&lt;!-- New delete icon --&gt;
+&lt;img src="/images/trashcan.svg" alt="Delete Icon" onclick="deleteBlog('&lt;%= blog._id %&gt;')" style="cursor: pointer;"&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Add JavaScript for Delete Functionality:</strong>
+Ensure that the delete functionality is handled correctly by adding a JavaScript function to manage the delete operation:</p>
+<pre><code class="language-html">&lt;script&gt;
+    function deleteBlog(blogId) {
+        if (confirm('Are you sure you want to delete this blog?')) {
+            fetch(`/delete/${blogId}`, { method: 'DELETE' })
+                .then(response =&gt; response.json())
+                .then(data =&gt; {
+                    if (data.success) {
+                        window.location.href = '/';
+                    } else {
+                        alert('Failed to delete the blog.');
+                    }
+                });
+        }
+    }
+&lt;/script&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="handling-404-errors-1"><a class="header" href="#handling-404-errors-1">Handling 404 Errors</a></h2>
+<p>To improve the user experience, we need to handle cases where a requested blog post does not exist. We will create a custom 404 page and update the controller logic to render this page when necessary.</p>
+<ol>
+<li>
+<p><strong>Create a 404 View:</strong>
+Add a new view for the 404 error page (<code>views/404.ejs</code> or <code>views/404.hbs</code>):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Blog Not Found&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;404 - Blog Not Found&lt;/h1&gt;
+    &lt;p&gt;The blog you are looking for does not exist.&lt;/p&gt;
+    &lt;a href="/"&gt;Go back to Home&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Update the Controller Logic:</strong>
+Modify the controller logic to render the 404 page when a blog post is not found. Update the relevant controller file (e.g., <code>controllers/blogController.js</code>):</p>
+<pre><code class="language-javascript">const Blog = require('../models/blog');
+
+module.exports.blog_details = (req, res) =&gt; {
+    const id = req.params.id;
+    Blog.findById(id)
+        .then(result =&gt; {
+            if (!result) {
+                res.status(404).render('404', { title: 'Blog Not Found' });
+            } else {
+                res.render('details', { blog: result, title: 'Blog Details' });
+            }
+        })
+        .catch(err =&gt; {
+            console.log(err);
+            res.status(404).render('404', { title: 'Blog Not Found' });
+        });
+};
+</code></pre>
+</li>
+</ol>
+<h2 id="extending-the-project"><a class="header" href="#extending-the-project">Extending the Project</a></h2>
+<p>While this tutorial series covers the basics, there are numerous ways to extend and improve your project:</p>
+<ul>
+<li><strong>Add Categories:</strong> Introduce categories to filter blogs.</li>
+<li><strong>Add Authors:</strong> Include an author property in the blog model.</li>
+<li><strong>Display Dates:</strong> Show the creation date of each blog post on the front end.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>This concludes the Node.js crash course tutorial series. Throughout this journey, we have built a comprehensive project using Node.js, Express, and MongoDB. The knowledge gained here sets a solid foundation for exploring more advanced topics in Node.js, such as Firebase integration, authentication, payments, and full-stack development with modern front-end frameworks like React or Vue.</p>
+<p>We hope this series has been informative and beneficial. Continue to build upon this project, explore new features, and deepen your understanding of Node.js. Thank you for following along, and we look forward to seeing you in future advanced courses.</p>
+<h2 id="final-code-snippets"><a class="header" href="#final-code-snippets">Final Code Snippets</a></h2>
+<p><strong>Details View (details.ejs):</strong></p>
+<pre><code class="language-html">&lt;!-- Updated delete icon --&gt;
+&lt;img src="/images/trashcan.svg" alt="Delete Icon" onclick="deleteBlog('&lt;%= blog._id %&gt;')" style="cursor: pointer;"&gt;
+</code></pre>
+<p><strong>JavaScript for Delete Functionality:</strong></p>
+<pre><code class="language-html">&lt;script&gt;
+    function deleteBlog(blogId) {
+        if (confirm('Are you sure you want to delete this blog?')) {
+            fetch(`/delete/${blogId}`, { method: 'DELETE' })
+                .then(response =&gt; response.json())
+                .then(data =&gt; {
+                    if (data.success) {
+                        window.location.href = '/';
+                    } else {
+                        alert('Failed to delete the blog.');
+                    }
+                });
+        }
+    }
+&lt;/script&gt;
+</code></pre>
+<p><strong>404 View (404.ejs):</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Blog Not Found&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;404 - Blog Not Found&lt;/h1&gt;
+    &lt;p&gt;The blog you are looking for does not exist.&lt;/p&gt;
+    &lt;a href="/"&gt;Go back to Home&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>Controller Logic (blogController.js):</strong></p>
+<pre><code class="language-javascript">const Blog = require('../models/blog');
+
+module.exports.blog_details = (req, res) =&gt; {
+    const id = req.params.id;
+    Blog.findById(id)
+        .then(result =&gt; {
+            if (!result) {
+                res.status(404).render('404', { title: 'Blog Not Found' });
+            } else {
+                res.render('details', { blog: result, title: 'Blog Details' });
+            }
+        })
+        .catch(err =&gt; {
+            console.log(err);
+            res.status(404).render('404', { title: 'Blog Not Found' });
+        });
+};
+</code></pre>
+<p>By following these steps and using the provided code snippets, you can enhance your Node.js project and ensure it meets high standards of functionality and user experience.s</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example--wrap-up"><a class="header" href="#example--wrap-up">Example : Wrap Up</a></h1>
+<h2 id="1-project-setup"><a class="header" href="#1-project-setup">1. Project Setup</a></h2>
+<p><strong>Project Structure:</strong></p>
+<pre><code>node-express-mongodb
+├── models
+│   └── blog.js
+├── public
+│   └── images
+│       └── trashcan.svg
+├── views
+│   ├── 404.ejs
+│   ├── details.ejs
+│   └── index.ejs
+├── controllers
+│   └── blogController.js
+├── routes
+│   └── blogRoutes.js
+├── app.js
+└── package.json
+</code></pre>
+<h2 id="2-file-contents"><a class="header" href="#2-file-contents">2. File Contents</a></h2>
+<p><strong>app.js:</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+const mongoose = require('mongoose');
+const blogRoutes = require('./routes/blogRoutes');
+
+const app = express();
+const port = 3000;
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/blogs', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() =&gt; app.listen(port, () =&gt; console.log(`Server running on port ${port}`)))
+    .catch(err =&gt; console.log(err));
+
+// Middleware
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+
+// View Engine
+app.set('view engine', 'ejs');
+
+// Routes
+app.use('/blogs', blogRoutes);
+
+// 404 Page
+app.use((req, res) =&gt; {
+    res.status(404).render('404', { title: '404 - Not Found' });
+});
+</code></pre>
+<p><strong>models/blog.js:</strong></p>
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const blogSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    snippet: {
+        type: String,
+        required: true
+    },
+    body: {
+        type: String,
+        required: true
+    }
+}, { timestamps: true });
+
+const Blog = mongoose.model('Blog', blogSchema);
+module.exports = Blog;
+</code></pre>
+<p><strong>controllers/blogController.js:</strong></p>
+<pre><code class="language-javascript">const Blog = require('../models/blog');
+
+const blog_index = (req, res) =&gt; {
+    Blog.find().sort({ createdAt: -1 })
+        .then(result =&gt; {
+            res.render('index', { title: 'All Blogs', blogs: result });
+        })
+        .catch(err =&gt; {
+            console.log(err);
+        });
+};
+
+const blog_details = (req, res) =&gt; {
+    const id = req.params.id;
+    Blog.findById(id)
+        .then(result =&gt; {
+            if (!result) {
+                res.status(404).render('404', { title: 'Blog Not Found' });
+            } else {
+                res.render('details', { blog: result, title: 'Blog Details' });
+            }
+        })
+        .catch(err =&gt; {
+            console.log(err);
+            res.status(404).render('404', { title: 'Blog Not Found' });
+        });
+};
+
+const blog_delete = (req, res) =&gt; {
+    const id = req.params.id;
+    Blog.findByIdAndDelete(id)
+        .then(result =&gt; {
+            res.json({ redirect: '/blogs' });
+        })
+        .catch(err =&gt; {
+            console.log(err);
+        });
+};
+
+module.exports = {
+    blog_index,
+    blog_details,
+    blog_delete
+};
+</code></pre>
+<p><strong>routes/blogRoutes.js:</strong></p>
+<pre><code class="language-javascript">const express = require('express');
+const blogController = require('../controllers/blogController');
+const router = express.Router();
+
+router.get('/', blogController.blog_index);
+router.get('/:id', blogController.blog_details);
+router.delete('/:id', blogController.blog_delete);
+
+module.exports = router;
+</code></pre>
+<p><strong>views/index.ejs:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;All Blogs&lt;/h1&gt;
+    &lt;% blogs.forEach(blog =&gt; { %&gt;
+        &lt;div&gt;
+            &lt;h2&gt;&lt;%= blog.title %&gt;&lt;/h2&gt;
+            &lt;p&gt;&lt;%= blog.snippet %&gt;&lt;/p&gt;
+            &lt;a href="/blogs/&lt;%= blog._id %&gt;"&gt;Read more&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;% }) %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>views/details.ejs:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;&lt;%= blog.title %&gt;&lt;/h1&gt;
+    &lt;p&gt;&lt;%= blog.body %&gt;&lt;/p&gt;
+    &lt;img src="/images/trashcan.svg" alt="Delete Icon" onclick="deleteBlog('&lt;%= blog._id %&gt;')" style="cursor: pointer;"&gt;
+    &lt;script&gt;
+        function deleteBlog(blogId) {
+            if (confirm('Are you sure you want to delete this blog?')) {
+                fetch(`/blogs/${blogId}`, { method: 'DELETE' })
+                    .then(response =&gt; response.json())
+                    .then(data =&gt; {
+                        if (data.redirect) {
+                            window.location.href = data.redirect;
+                        } else {
+                            alert('Failed to delete the blog.');
+                        }
+                    });
+            }
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>views/404.ejs:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;404 - Blog Not Found&lt;/h1&gt;
+    &lt;p&gt;The blog you are looking for does not exist.&lt;/p&gt;
+    &lt;a href="/"&gt;Go back to Home&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="running-the-application-3"><a class="header" href="#running-the-application-3">Running the Application</a></h2>
+<ol>
+<li>
+<p><strong>Install Dependencies:</strong>
+Ensure you have Node.js and MongoDB installed. Initialize the project and install required dependencies:</p>
+<pre><code class="language-bash">npm init -y
+npm install express mongoose ejs
+</code></pre>
+</li>
+<li>
+<p><strong>Start MongoDB:</strong>
+Ensure your MongoDB server is running. You can start it using:</p>
+<pre><code class="language-bash">mongod
+</code></pre>
+</li>
+<li>
+<p><strong>Run the Application:</strong>
+Start the Node.js application:</p>
+<pre><code class="language-bash">node app.js
+</code></pre>
+<p>Navigate to <code>http://localhost:3000/blogs</code> to view the blog application. You can add blogs directly to your MongoDB database to test the application. The delete functionality now uses a trashcan icon, and 404 errors are properly handled with a custom 404 page.</p>
+</li>
+</ol>
+<p>This example illustrates the final enhancements to the Node.js project, ensuring the application is more user-friendly and robust.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

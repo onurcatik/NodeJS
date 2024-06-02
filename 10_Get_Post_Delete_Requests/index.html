@@ -1,0 +1,413 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Get, Post, Delete Requests - Node.js</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../01_Introduction_Setup/index.html"><strong aria-hidden="true">1.</strong> Introduction & Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../01_Introduction_Setup/example.html"><strong aria-hidden="true">1.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../02_Basics/index.html"><strong aria-hidden="true">2.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../02_Basics/example.html"><strong aria-hidden="true">2.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../03_Clients_Servers/index.html"><strong aria-hidden="true">3.</strong> Clients Servers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../03_Clients_Servers/example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../04_Requests_Responses/index.html"><strong aria-hidden="true">4.</strong> Request & Responses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../04_Requests_Responses/example.html"><strong aria-hidden="true">4.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../05_NPM/index.html"><strong aria-hidden="true">5.</strong> NPM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../05_NPM/example.html"><strong aria-hidden="true">5.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../06_Express_Apps/index.html"><strong aria-hidden="true">6.</strong> Express Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../06_Express_Apps/example.html"><strong aria-hidden="true">6.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../07_View_Engines/index.html"><strong aria-hidden="true">7.</strong> View Engines</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../07_View_Engines/example.html"><strong aria-hidden="true">7.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../08_Middleware/index.html"><strong aria-hidden="true">8.</strong> Middleware</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../08_Middleware/example.html"><strong aria-hidden="true">8.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../09_MongoDB/index.html"><strong aria-hidden="true">9.</strong> MongoDB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../09_MongoDB/example.html"><strong aria-hidden="true">9.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../10_Get_Post_Delete_Requests/index.html" class="active"><strong aria-hidden="true">10.</strong> Get, Post, Delete Requests</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../10_Get_Post_Delete_Requests/example.html"><strong aria-hidden="true">10.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../11_Express_Router_MVC/index.html"><strong aria-hidden="true">11.</strong> Express Router MVC</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../11_Express_Router_MVC/example.html"><strong aria-hidden="true">11.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="../12_Wrap_Up/index.html"><strong aria-hidden="true">12.</strong> Wrap Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../12_Wrap_Up/example.html"><strong aria-hidden="true">12.1.</strong> Example</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Node.js</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="nodejs---get-post--delete-requests"><a class="header" href="#nodejs---get-post--delete-requests">Node.js - GET, POST &amp; DELETE Requests</a></h1>
+<p>In this tutorial, we will discuss handling different types of HTTP requests in a Node.js application using the Express framework. We will focus on three main types of requests: GET, POST, and DELETE. We will also see how to implement these requests in a simple blog application.</p>
+<h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
+<p>HTTP requests are the foundation of web communication between clients and servers. Different request types serve different purposes:</p>
+<ul>
+<li><strong>GET</strong>: Retrieve data from the server.</li>
+<li><strong>POST</strong>: Send data to the server, typically to create new resources.</li>
+<li><strong>DELETE</strong>: Remove resources from the server.</li>
+</ul>
+<h2 id="setting-up-the-environment"><a class="header" href="#setting-up-the-environment">Setting Up the Environment</a></h2>
+<p>Before we dive into the code, ensure you have Node.js and Express installed. You can set up a new Express project using the following commands:</p>
+<pre><code class="language-bash">npm init -y
+npm install express
+</code></pre>
+<p>Create an <code>app.js</code> file and set up a basic Express server:</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.urlencoded({ extended: true }));
+
+app.listen(port, () =&gt; {
+  console.log(`Server running at http://localhost:${port}`);
+});
+</code></pre>
+<h2 id="handling-get-requests"><a class="header" href="#handling-get-requests">Handling GET Requests</a></h2>
+<p>GET requests are used to retrieve data. In our blog application, we will handle GET requests to fetch all blogs and individual blog details.</p>
+<h2 id="fetching-all-blogs"><a class="header" href="#fetching-all-blogs">Fetching All Blogs</a></h2>
+<pre><code class="language-javascript">// Dummy data for blogs
+const blogs = [
+  { id: 1, title: 'First Blog', snippet: 'This is the first blog' },
+  { id: 2, title: 'Second Blog', snippet: 'This is the second blog' },
+];
+
+// Route to get all blogs
+app.get('/blogs', (req, res) =&gt; {
+  res.json(blogs);
+});
+</code></pre>
+<h2 id="fetching-a-single-blog"><a class="header" href="#fetching-a-single-blog">Fetching a Single Blog</a></h2>
+<pre><code class="language-javascript">// Route to get a single blog by ID
+app.get('/blogs/:id', (req, res) =&gt; {
+  const blog = blogs.find(b =&gt; b.id === parseInt(req.params.id));
+  if (blog) {
+    res.json(blog);
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});
+</code></pre>
+<h2 id="handling-post-requests"><a class="header" href="#handling-post-requests">Handling POST Requests</a></h2>
+<p>POST requests are used to send data to the server to create new resources. We will create a new blog post via a POST request.</p>
+<h2 id="creating-a-new-blog"><a class="header" href="#creating-a-new-blog">Creating a New Blog</a></h2>
+<ol>
+<li><strong>HTML Form for Creating a Blog</strong>:</li>
+</ol>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Create Blog&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form action="/blogs" method="POST"&gt;
+    &lt;label for="title"&gt;Title:&lt;/label&gt;
+    &lt;input type="text" id="title" name="title"&gt;
+    &lt;br&gt;
+    &lt;label for="snippet"&gt;Snippet:&lt;/label&gt;
+    &lt;input type="text" id="snippet" name="snippet"&gt;
+    &lt;br&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ol start="2">
+<li><strong>Handling the POST Request in Express</strong>:</li>
+</ol>
+<pre><code class="language-javascript">// Middleware to parse URL-encoded data
+app.use(express.urlencoded({ extended: true }));
+
+// Route to handle form submission
+app.post('/blogs', (req, res) =&gt; {
+  const newBlog = {
+    id: blogs.length + 1,
+    title: req.body.title,
+    snippet: req.body.snippet,
+  };
+  blogs.push(newBlog);
+  res.redirect('/blogs');
+});
+</code></pre>
+<h2 id="handling-delete-requests"><a class="header" href="#handling-delete-requests">Handling DELETE Requests</a></h2>
+<p>DELETE requests are used to remove resources from the server. We will implement a route to delete a blog post.</p>
+<h2 id="deleting-a-blog"><a class="header" href="#deleting-a-blog">Deleting a Blog</a></h2>
+<ol>
+<li><strong>HTML for Delete Button</strong>:</li>
+</ol>
+<pre><code class="language-html">&lt;!-- Part of the blog details page --&gt;
+&lt;button class="delete-btn" data-id="&lt;%= blog.id %&gt;"&gt;Delete&lt;/button&gt;
+</code></pre>
+<ol start="2">
+<li><strong>Client-Side JavaScript to Send DELETE Request</strong>:</li>
+</ol>
+<pre><code class="language-html">&lt;script&gt;
+document.querySelectorAll('.delete-btn').forEach(button =&gt; {
+  button.addEventListener('click', function () {
+    const id = this.getAttribute('data-id');
+    fetch(`/blogs/${id}`, {
+      method: 'DELETE',
+    }).then(response =&gt; {
+      if (response.ok) {
+        window.location.href = '/blogs';
+      } else {
+        console.error('Failed to delete blog');
+      }
+    });
+  });
+});
+&lt;/script&gt;
+</code></pre>
+<ol start="3">
+<li><strong>Handling the DELETE Request in Express</strong>:</li>
+</ol>
+<pre><code class="language-javascript">// Route to handle delete request
+app.delete('/blogs/:id', (req, res) =&gt; {
+  const blogId = parseInt(req.params.id);
+  const blogIndex = blogs.findIndex(b =&gt; b.id === blogId);
+  if (blogIndex !== -1) {
+    blogs.splice(blogIndex, 1);
+    res.json({ redirect: '/blogs' });
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});
+</code></pre>
+<h2 id="complete-code"><a class="header" href="#complete-code">Complete Code</a></h2>
+<p>Combining all the parts, our <code>app.js</code> file looks like this:</p>
+<pre><code class="language-javascript">const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.urlencoded({ extended: true }));
+
+const blogs = [
+  { id: 1, title: 'First Blog', snippet: 'This is the first blog' },
+  { id: 2, title: 'Second Blog', snippet: 'This is the second blog' },
+];
+
+app.get('/blogs', (req, res) =&gt; {
+  res.json(blogs);
+});
+
+app.get('/blogs/:id', (req, res) =&gt; {
+  const blog = blogs.find(b =&gt; b.id === parseInt(req.params.id));
+  if (blog) {
+    res.json(blog);
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});
+
+app.post('/blogs', (req, res) =&gt; {
+  const newBlog = {
+    id: blogs.length + 1,
+    title: req.body.title,
+    snippet: req.body.snippet,
+  };
+  blogs.push(newBlog);
+  res.redirect('/blogs');
+});
+
+app.delete('/blogs/:id', (req, res) =&gt; {
+  const blogId = parseInt(req.params.id);
+  const blogIndex = blogs.findIndex(b =&gt; b.id === blogId);
+  if (blogIndex !== -1) {
+    blogs.splice(blogIndex, 1);
+    res.json({ redirect: '/blogs' });
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});
+
+app.listen(port, () =&gt; {
+  console.log(`Server running at http://localhost:${port}`);
+});
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../09_MongoDB/example.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../10_Get_Post_Delete_Requests/example.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../09_MongoDB/example.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../10_Get_Post_Delete_Requests/example.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
